@@ -1,3 +1,6 @@
+// REGISTER GSAP PLUGINS
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 // NAVIGATION SCROLL
 const nav = document.getElementById("mainNav");
 window.addEventListener("scroll", () => {
@@ -8,19 +11,115 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// HERO ANIMATIONS
+const heroTimeline = gsap.timeline();
+
+heroTimeline
+  .from(".hero-badge", {
+    y: -50,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out",
+  })
+  .from(
+    ".title-line",
+    {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.3,
+      ease: "power4.out",
+    },
+    "-=0.5"
+  )
+  .from(
+    ".hero-subtitle",
+    {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    },
+    "-=0.5"
+  );
+/* Animations removed to force visibility
+  .from(
+    ".stat-card",
+    {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "back.out(1.7)",
+    },
+    "-=0.4"
+  )
+  .from(
+    ".btn-hero",
+    {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+    },
+    "-=0.6"
+  );
+  */
+
+// DYNAMIC STATS
+function updateStats() {
+  const wallpaperCount = document.querySelectorAll(".grid-item").length;
+  const collectionCount = document.querySelectorAll(".collection-card").length;
+
+  const statWallpapers = document.getElementById("stat-wallpapers");
+  const statCollections = document.getElementById("stat-collections");
+
+  if (statWallpapers) statWallpapers.textContent = wallpaperCount + "+";
+  if (statCollections) statCollections.textContent = collectionCount;
+}
+
+// Run stats update
+updateStats();
+
+// COLLECTION ANIMATIONS
+gsap.utils.toArray(".collection-card").forEach((card, i) => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top 80%",
+      toggleActions: "play none none reverse",
+    },
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out",
+  });
+});
+
+// ABOUT SECTION ANIMATION
+gsap.from(".about-content", {
+  scrollTrigger: {
+    trigger: ".about-content",
+    start: "top 75%",
+    toggleActions: "play none none reverse",
+  },
+  y: 50,
+  opacity: 0,
+  duration: 1,
+  ease: "power3.out",
+});
+
 // SMOOTH SCROLLING
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     const href = this.getAttribute("href");
     if (href !== "#" && href !== "") {
       e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        window.scrollTo({
-          top: target.offsetTop - 80,
-          behavior: "smooth",
-        });
-      }
+      gsap.to(window, {
+        duration: 0.6,
+        scrollTo: { y: href, offsetY: 80 },
+        ease: "power2.inOut",
+      });
     }
   });
 });
@@ -36,29 +135,28 @@ window.addEventListener("scroll", () => {
 });
 
 backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  gsap.to(window, { duration: 0.6, scrollTo: 0, ease: "power2.inOut" });
 });
 
-// INTERSECTION OBSERVER FOR COLLECTIONS
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.1 }
-);
+// IMAGE PRELOADING (Performance)
+// Preload the first few images to ensure hero/top collections look instant
+function preloadImages() {
+  const imagesToPreload = [
+    "./optimized/demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg",
+    "./optimized/demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg",
+    "./optimized/demon-slayer-tanjiro-kamado-wallpaper.jpg",
+  ];
 
-document.querySelectorAll(".collection-card").forEach((card) => {
-  observer.observe(card);
-});
+  imagesToPreload.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+window.addEventListener("load", preloadImages);
 
-// AUTO-SCROLL COLLECTIONS
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll(".collection-card").forEach((card, index) => {
+// AUTO-SCROLL COLLECTIONS (Optimized)
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".collection-card").forEach((card) => {
     const grid = card.querySelector(".collection-grid");
     const wrapper = card.querySelector(".collection-wrapper");
     const prevBtn = wrapper ? wrapper.querySelector(".nav-prev") : null;
@@ -66,50 +164,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!grid) return;
 
-    // Get original item count (before cloning)
+    // Get original item count
     const items = Array.from(grid.children);
     const itemCount = items.length;
     const shouldAutoScroll = itemCount > 3;
 
-    // Only clone items for infinite scroll if collection has more than 3 items
     if (shouldAutoScroll) {
-      items.forEach(item => {
+      items.forEach((item) => {
         const clone = item.cloneNode(true);
+        // Ensure cloned item onclick uses the same optimized path logic if passed as string literal
         grid.appendChild(clone);
       });
     }
 
-    let scrollSpeed = 1.5;
+    let scrollSpeed = 1.1; // Slightly faster
     let isPaused = false;
-    let isAutoScrolling = shouldAutoScroll;
+    let autoScrollReq;
 
     function autoScroll() {
-      if (!isPaused && isAutoScrolling) {
+      if (shouldAutoScroll && !isPaused) {
         grid.scrollLeft += scrollSpeed;
-
-          // Reset to beginning for seamless loop
+        // Fix loop reset logic to be seamless
         if (grid.scrollLeft >= grid.scrollWidth / 2) {
-          grid.scrollLeft = 0;
+          grid.scrollLeft = 1; // Slight offset to prevent 0-lock
         }
       }
-      requestAnimationFrame(autoScroll);
+      autoScrollReq = requestAnimationFrame(autoScroll);
     }
 
-    // Navigation buttons
     if (prevBtn) {
       prevBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
-        isPaused = true;
-        const scrollAmount = 532; // 500px item + 32px gap
-        grid.scrollBy({
-          left: -scrollAmount,
-          behavior: 'smooth'
+        isPaused = true; // Pause to prevent fighting
+
+        const scrollAmount = 600; // Adjusted for better card width match
+
+        gsap.to(grid, {
+          scrollLeft: grid.scrollLeft - scrollAmount,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => {
+            isPaused = false; // Resume
+          },
         });
-        // Resume auto-scroll from current position after scroll completes
-        setTimeout(() => {
-          isPaused = false;
-        }, 500);
       });
     }
 
@@ -118,19 +216,25 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         e.stopPropagation();
         isPaused = true;
-        const scrollAmount = 532; // 500px item + 32px gap
-        grid.scrollBy({
-          left: scrollAmount,
-          behavior: 'smooth'
+
+        const scrollAmount = 600;
+
+        gsap.to(grid, {
+          scrollLeft: grid.scrollLeft + scrollAmount,
+          duration: 0.6,
+          ease: "power2.out",
+          onComplete: () => {
+            isPaused = false;
+          },
         });
-        // Resume auto-scroll from current position after scroll completes
-        setTimeout(() => {
-          isPaused = false;
-        }, 500);
       });
     }
 
-    // Start auto-scroll only for collections with more than 3 items
+    // Pause on click only (temporarily)
+    // Removed hover pause to strictly follow "should not stop"
+    // grid.addEventListener("mouseenter", () => (isPaused = true));
+    // grid.addEventListener("mouseleave", () => (isPaused = false));
+
     if (shouldAutoScroll) {
       autoScroll();
     }
@@ -139,10 +243,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // DOWNLOAD FUNCTIONS
 const collections = {
-  anime: ["demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg", "demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg", "demon-slayer-tanjiro-kamado-wallpaper.jpg", "demon-slayer-gyomei-stone-hashira-wallpaper.jpg", "Lamborghini Miura.jpg", "demon-slayer-obanai-serpent-hashira-wallpaper.jpg", "demon-slayer-akaza-upper-moon-wallpaper.jpg", "jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg", "jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg", "jujutsu-kaisen-itadori-action-pose-wallpaper.jpg", "jujutsu-kaisen-yuji-itadori-protagonist-wallpaper.jpg", "jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg", "jujutsu-kaisen-ensemble-cast-wallpaper.jpg"],
-  marvel: ["marvel-thanos-mad-titan-wallpaper.jpg", "marvel-thor-god-of-thunder-wallpaper.jpg", "marvel-loki-god-of-mischief-wallpaper.jpg", "marvel-loki-asgardian-prince-wallpaper.jpg", "marvel-venom-symbiote-wallpaper.jpg", "marvel-spider-gwen-stacy-wallpaper.jpg", "marvel-aunt-may-parker-wallpaper.jpg"],
-  strangerthings: ["tv-show-stranger-things-cast-wallpaper.jpg", "tv-show-stranger-things-upside-down-wallpaper.jpg", "tv-show-stranger-things-vecna-wallpaper.jpg", "tv-show-stranger-things-will-vecna-wallpaper.jpg", "marvel-steve-rogers-captain-america-wallpaper.jpg"],
-  movies: ["movie-interstellar-space-exploration-wallpaper.jpg", "tv-show-breaking-bad-heisenberg-wallpaper.jpg"],
+  anime: [
+    "demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg",
+    "demon-slayer-obanai-serpent-hashira-wallpaper.jpg",
+    "demon-slayer-akaza-upper-moon-wallpaper.jpg",
+    "demon-slayer-tanjiro-kamado-wallpaper.jpg",
+    "demon-slayer-gyomei-stone-hashira-wallpaper.jpg",
+    "demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg",
+    "jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg",
+    "jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg",
+    "jujutsu-kaisen-itadori-action-pose-wallpaper.jpg",
+    "jujutsu-kaisen-yuji-itadori-protagonist-wallpaper.jpg",
+    "jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg",
+    "jujutsu-kaisen-ensemble-cast-wallpaper.jpg",
+  ],
+  marvel: [
+    "marvel-thanos-mad-titan-wallpaper.jpg",
+    "marvel-thor-god-of-thunder-wallpaper.jpg",
+    "marvel-loki-god-of-mischief-wallpaper.jpg",
+    "marvel-loki-asgardian-prince-wallpaper.jpg",
+    "marvel-venom-symbiote-wallpaper.jpg",
+    "marvel-spider-gwen-stacy-wallpaper.jpg",
+    "marvel-aunt-may-parker-wallpaper.jpg",
+  ],
+  movies: [
+    "movie-interstellar-space-exploration-wallpaper.jpg",
+    "tv-show-breaking-bad-heisenberg-wallpaper.jpg",
+    "tv-show-stranger-things-cast-wallpaper.jpg",
+    "tv-show-stranger-things-upside-down-wallpaper.jpg",
+    "tv-show-stranger-things-vecna-wallpaper.jpg",
+    "tv-show-stranger-things-will-vecna-wallpaper.jpg",
+    "marvel-steve-rogers-captain-america-wallpaper.jpg",
+  ],
   cars: ["disney-lightning-mcqueen-cars-wallpaper.jpg"],
   transformers: ["disney-optimus-prime-transformers-wallpaper.jpg"],
   random: ["sneaker-jordan-lost-and-found-retro-wallpaper.jpg"],
@@ -173,24 +305,24 @@ async function downloadCollection(collectionName) {
     showNotification("Collection not found!", "error");
     return;
   }
-  
+
   showNotification(`Preparing ${files.length} wallpapers...`, "info");
-  
+
   try {
     const zip = new JSZip();
     const folder = zip.folder(collectionName);
-    
+
     const promises = files.map(async (filename) => {
       const response = await fetch("./" + filename);
       const blob = await response.blob();
       folder.file(filename, blob);
     });
-    
+
     await Promise.all(promises);
-    
+
     showNotification("Creating ZIP...", "info");
     const content = await zip.generateAsync({ type: "blob" });
-    
+
     const link = document.createElement("a");
     link.href = URL.createObjectURL(content);
     link.download = `${collectionName}-wallpapers.zip`;
@@ -198,7 +330,7 @@ async function downloadCollection(collectionName) {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
-    
+
     showNotification("ZIP downloaded!");
   } catch (error) {
     console.error("Download failed:", error);
@@ -209,7 +341,7 @@ async function downloadCollection(collectionName) {
 function showNotification(message, type = "success") {
   const existing = document.querySelector(".notification");
   if (existing) existing.remove();
-  
+
   const notification = document.createElement("div");
   notification.className = `notification ${type}`;
   notification.textContent = message;
@@ -218,7 +350,9 @@ function showNotification(message, type = "success") {
     bottom: 100px;
     right: 2rem;
     padding: 1rem 2rem;
-    background: ${type === "error" ? "#FF0040" : type === "info" ? "#00D9FF" : "#FFD700"};
+    background: ${
+      type === "error" ? "#FF0040" : type === "info" ? "#00D9FF" : "#FFD700"
+    };
     color: #0d0d0d;
     font-family: "Bebas Neue", sans-serif;
     font-size: 1.2rem;
@@ -229,7 +363,7 @@ function showNotification(message, type = "success") {
     clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
     animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
   `;
-  
+
   if (!document.getElementById("notification-styles")) {
     const style = document.createElement("style");
     style.id = "notification-styles";
@@ -245,7 +379,7 @@ function showNotification(message, type = "success") {
     `;
     document.head.appendChild(style);
   }
-  
+
   document.body.appendChild(notification);
   setTimeout(() => notification.remove(), 3000);
 }
@@ -254,6 +388,7 @@ function showNotification(message, type = "success") {
 function openLightbox(imageSrc, imageAlt) {
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
+
   lightbox.style.cssText = `
     position: fixed;
     top: 0;
@@ -266,9 +401,9 @@ function openLightbox(imageSrc, imageAlt) {
     justify-content: center;
     z-index: 10000;
     cursor: pointer;
-    animation: fadeIn 0.3s ease;
+    opacity: 0;
   `;
-  
+
   const img = document.createElement("img");
   img.src = imageSrc;
   img.alt = imageAlt;
@@ -279,10 +414,13 @@ function openLightbox(imageSrc, imageAlt) {
     border: 4px solid #00D9FF;
     box-shadow: 0 20px 60px rgba(0, 217, 255, 0.5);
     cursor: default;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   `;
-  
+
   const closeBtn = document.createElement("button");
-  closeBtn.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+  closeBtn.innerHTML =
+    '<svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
   closeBtn.style.cssText = `
     position: absolute;
     top: 2rem;
@@ -300,19 +438,20 @@ function openLightbox(imageSrc, imageAlt) {
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(0, 217, 255, 0.5);
   `;
-  
+
   closeBtn.addEventListener("mouseenter", () => {
     closeBtn.style.background = "#FF0040";
     closeBtn.style.transform = "scale(1.1) rotate(90deg)";
   });
-  
+
   closeBtn.addEventListener("mouseleave", () => {
     closeBtn.style.background = "#00D9FF";
     closeBtn.style.transform = "scale(1) rotate(0deg)";
   });
-  
+
   const downloadBtn = document.createElement("button");
-  downloadBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  downloadBtn.innerHTML =
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   downloadBtn.style.cssText = `
     position: absolute;
     bottom: 2rem;
@@ -333,49 +472,105 @@ function openLightbox(imageSrc, imageAlt) {
     transition: all 0.3s ease;
     box-shadow: 0 8px 20px rgba(0, 217, 255, 0.4);
   `;
-  
+
   downloadBtn.addEventListener("mouseenter", () => {
     downloadBtn.style.transform = "translateY(-5px) scale(1.05)";
     downloadBtn.style.boxShadow = "0 12px 30px rgba(0, 217, 255, 0.6)";
   });
-  
+
   downloadBtn.addEventListener("mouseleave", () => {
     downloadBtn.style.transform = "translateY(0) scale(1)";
     downloadBtn.style.boxShadow = "0 8px 20px rgba(0, 217, 255, 0.4)";
   });
-  
+
   downloadBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    downloadImage(imageSrc);
+    // Remove "optimized/" from path to download original high-res file
+    const originalPath = imageSrc.replace("/optimized/", "/");
+    downloadImage(originalPath);
   });
-  
+
   lightbox.appendChild(img);
   lightbox.appendChild(closeBtn);
   lightbox.appendChild(downloadBtn);
   document.body.appendChild(lightbox);
   document.body.style.overflow = "hidden";
-  
+
+  // GSAP Animation for Lightbox Entry
+  gsap.to(lightbox, { opacity: 1, duration: 0.3 });
+  gsap.to(img, { scale: 1, duration: 0.4, ease: "back.out(1.5)" });
+
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
   });
-  
+
   closeBtn.addEventListener("click", closeLightbox);
-  
+
   function handleEscape(e) {
     if (e.key === "Escape") closeLightbox();
   }
   document.addEventListener("keydown", handleEscape);
-  
-  lightbox.cleanup = () => document.removeEventListener("keydown", handleEscape);
-  
+
+  lightbox.cleanup = () =>
+    document.removeEventListener("keydown", handleEscape);
+
   function closeLightbox() {
-    lightbox.style.animation = "fadeOut 0.3s ease";
-    setTimeout(() => {
-      lightbox.remove();
-      document.body.style.overflow = "";
-      if (lightbox.cleanup) lightbox.cleanup();
-    }, 300);
+    gsap.to(lightbox, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => {
+        lightbox.remove();
+        document.body.style.overflow = "";
+        if (lightbox.cleanup) lightbox.cleanup();
+      },
+    });
+    gsap.to(img, { scale: 0.9, duration: 0.3 });
   }
 }
 
 console.log("⚡ EPIC WALLPAPERS - INITIALIZED ⚡");
+
+// SCROLL REVEAL ANIMATIONS
+const initScrollReveal = () => {
+  const revealElements = document.querySelectorAll(
+    ".grid-item, .collection-title, .collection-desc, .section-title, .btn-download-all"
+  );
+
+  revealElements.forEach((el) => el.classList.add("reveal"));
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
+
+  revealElements.forEach((el) => revealObserver.observe(el));
+};
+
+initScrollReveal();
+
+// MOBILE MENU TOGGLE
+function toggleMenu() {
+  const navLinks = document
+    .getElementById("mainNav")
+    .querySelector(".nav-right"); // Adjusted selector
+  const toggleBtn = document.querySelector(".mobile-toggle");
+
+  if (navLinks && toggleBtn) {
+    navLinks.classList.toggle("active");
+    toggleBtn.classList.toggle("active");
+    document.body.style.overflow = navLinks.classList.contains("active")
+      ? "hidden"
+      : "auto";
+  }
+}

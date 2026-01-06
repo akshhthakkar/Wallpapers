@@ -1,0 +1,24 @@
+{
+  "name": "wallpapers",
+  "version": "1.0.0",
+  "description": "A personal collection of high-quality wallpapers featuring anime characters, movies, and pop culture references.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshhthakkar/Wallpapers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/akshhthakkar/Wallpapers/issues"
+  },
+  "homepage": "https://github.com/akshhthakkar/Wallpapers#readme",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}

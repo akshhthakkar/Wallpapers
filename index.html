@@ -11,6 +11,9 @@
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 
@@ -20,7 +23,8 @@
     <div class="nav-container">
       <div class="nav-left">
         <img class="nav-avatar" src="https://avatars.githubusercontent.com/u/156109288?v=4" alt="Aksh Thakkar" />
-        <span class="nav-brand">EPIC WALLPAPERS</span>
+        <span class="nav-brand" style="color: var(--color-primary)">WALLPAPER<span
+            style="color: var(--color-secondary)">VERSE</span></span>
       </div>
       <div class="nav-right">
         <a href="#collections" class="nav-link">COLLECTIONS</a>
@@ -30,24 +34,43 @@
           <div class="cta-arrow">→</div>
         </a>
       </div>
+      <button class="mobile-toggle" aria-label="Toggle Menu" onclick="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
     </div>
   </nav>
   <section class="hero">
-    <div class="hero-badge">NEW COLLECTION</div>
+    <div class="hero-scatter-bg">
+      <span style="top: 10%; left: 5%; transform: rotate(-15deg)">ANIME</span>
+      <span style="top: 15%; right: 10%; transform: rotate(10deg)">MOVIES</span>
+      <span style="bottom: 10%; left: 8%; transform: rotate(5deg)">HEROES</span>
+      <span style="bottom: 15%; right: 5%; transform: rotate(-8deg)">VERSE</span>
+      <span style="top: 40%; left: -2%; transform: rotate(90deg); opacity: 0.02">WALLPAPERS</span>
+      <span style="top: 60%; right: -2%; transform: rotate(-90deg); opacity: 0.02">DESKTOP</span>
+      <span style="top: 5%; left: 40%; transform: rotate(-5deg); font-size: 2rem">4K</span>
+      <span style="bottom: 5%; right: 30%; transform: rotate(8deg); font-size: 2rem">HD</span>
+      <span style="top: 25%; left: 20%; transform: rotate(12deg); opacity: 0.02">ART</span>
+      <span style="bottom: 30%; right: 20%; transform: rotate(-12deg); opacity: 0.02">EPIC</span>
+      <span style="top: 80%; left: 15%; transform: rotate(-20deg)">CINEMATIC</span>
+      <span style="top: 20%; right: 35%; transform: rotate(15deg)">LEGENDARY</span>
+    </div>
+    <div class="hero-badge">CURATED COLLECTION</div>
     <h1 class="hero-title">
       <span class="title-line">WALLPAPERS</span>
-      <span class="title-line title-accent">UNLEASHED</span>
+      <span class="title-line title-accent">UNLEASHED!</span>
     </h1>
     <p class="hero-subtitle">
-      Epic anime & superhero artwork for your screens
+      High-quality wallpapers from every verse for every screen
     </p>
     <div class="hero-stats">
       <div class="stat-card">
-        <div class="stat-number">30+</div>
+        <div class="stat-number" id="stat-wallpapers">30+</div>
         <div class="stat-label">WALLPAPERS</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">7</div>
+        <div class="stat-number" id="stat-collections">7</div>
         <div class="stat-label">COLLECTIONS</div>
       </div>
       <div class="stat-card">
@@ -56,14 +79,17 @@
       </div>
     </div>
     <a href="#collections" class="btn-hero">
-      <span>EXPLORE NOW</span>
+      <span>EXPLORE COLLECTION</span>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="3" stroke-linecap="round"
           stroke-linejoin="round" />
       </svg>
     </a>
+
     <div class="hero-pattern"></div>
   </section>
+
+
   <section class="collections" id="collections">
     <div class="section-header">
       <div class="section-badge">COLLECTIONS</div>
@@ -74,13 +100,17 @@
         <div class="collection-number">01</div>
         <h3 class="collection-title">ANIME COLLECTION</h3>
         <p class="collection-desc">
-          Epic anime moments from Demon Slayer and Jujutsu Kaisen combined
+          A curated collection of anime-style wallpapers featuring characters, action scenes, and visually striking
+          moments from
+          various anime worlds. This category includes a mix of intense battle frames, calm aesthetic shots, and
+          detailed
+          character artwork.
         </p>
         <div class="collection-meta">
           <span class="meta-tag">19 IMAGES</span><span class="meta-tag">HD</span>
         </div>
         <button class="btn-download-all" onclick="downloadCollection('anime')">
-          DOWNLOAD ALL
+          DOWNLOAD COLLECTION
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -96,8 +126,48 @@
         </button>
         <div class="collection-grid">
           <div class="grid-item"
+            onclick="openLightbox('./demon-slayer-tanjiro-kamado-wallpaper.jpg', 'Tanjiro Kamado')">
+            <img src="./optimized/demon-slayer-tanjiro-kamado-wallpaper.jpg" alt="Tanjiro Kamado" loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./demon-slayer-tanjiro-kamado-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
+            onclick="openLightbox('./demon-slayer-akaza-upper-moon-wallpaper.jpg', 'Akaza Upper Moon')">
+            <img src="./optimized/demon-slayer-akaza-upper-moon-wallpaper.jpg" alt="Akaza Upper Moon" loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./demon-slayer-akaza-upper-moon-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
+            onclick="openLightbox('./demon-slayer-obanai-serpent-hashira-wallpaper.jpg', 'Obanai Serpent Hashira')">
+            <img src="./optimized/demon-slayer-obanai-serpent-hashira-wallpaper.jpg" alt="Obanai Serpent Hashira"
+              loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./demon-slayer-obanai-serpent-hashira-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
             onclick="openLightbox('./demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg', 'Zenitsu Thunder Breathing')">
-            <img src="./demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg" alt="Zenitsu Thunder Breathing"
+            <img src="./optimized/demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg" alt="Zenitsu Thunder Breathing"
               loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
@@ -111,7 +181,7 @@
           </div>
           <div class="grid-item"
             onclick="openLightbox('./demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg', 'Zenitsu Yellow Lightning')">
-            <img src="./demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg" alt="Zenitsu Yellow Lightning"
+            <img src="./optimized/demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg" alt="Zenitsu Yellow Lightning"
               loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
@@ -124,21 +194,9 @@
             </div>
           </div>
           <div class="grid-item"
-            onclick="openLightbox('./demon-slayer-tanjiro-kamado-wallpaper.jpg', 'Tanjiro Kamado')">
-            <img src="./demon-slayer-tanjiro-kamado-wallpaper.jpg" alt="Tanjiro Kamado" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./demon-slayer-tanjiro-kamado-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="grid-item"
             onclick="openLightbox('./demon-slayer-gyomei-stone-hashira-wallpaper.jpg', 'Gyomei Stone Hashira')">
-            <img src="./demon-slayer-gyomei-stone-hashira-wallpaper.jpg" alt="Gyomei Stone Hashira" loading="lazy" />
+            <img src="./optimized/demon-slayer-gyomei-stone-hashira-wallpaper.jpg" alt="Gyomei Stone Hashira"
+              loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./demon-slayer-gyomei-stone-hashira-wallpaper.jpg')">
@@ -149,75 +207,9 @@
               </button>
             </div>
           </div>
-          <div class="grid-item" onclick="openLightbox('./Lamborghini Miura.jpg', 'Lamborghini Miura')">
-            <img src="./Lamborghini Miura.jpg" alt="Lamborghini Miura" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./Lamborghini Miura.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="grid-item"
-            onclick="openLightbox('./demon-slayer-obanai-serpent-hashira-wallpaper.jpg', 'Obanai Serpent Hashira')">
-            <img src="./demon-slayer-obanai-serpent-hashira-wallpaper.jpg" alt="Obanai Serpent Hashira"
-              loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./demon-slayer-obanai-serpent-hashira-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="grid-item"
-            onclick="openLightbox('./demon-slayer-akaza-upper-moon-wallpaper.jpg', 'Akaza Upper Moon')">
-            <img src="./demon-slayer-akaza-upper-moon-wallpaper.jpg" alt="Akaza Upper Moon" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./demon-slayer-akaza-upper-moon-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="grid-item"
-            onclick="openLightbox('./jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg', 'Ryomen Sukuna')">
-            <img src="./jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg" alt="Ryomen Sukuna" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="grid-item"
-            onclick="openLightbox('./jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg', 'Sukuna King of Curses')">
-            <img src="./jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg" alt="Sukuna King of Curses"
-              loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
           <div class="grid-item"
             onclick="openLightbox('./jujutsu-kaisen-itadori-action-pose-wallpaper.jpg', 'Yuji Itadori')">
-            <img src="./jujutsu-kaisen-itadori-action-pose-wallpaper.jpg" alt="Yuji Itadori" loading="lazy" />
+            <img src="./optimized/jujutsu-kaisen-itadori-action-pose-wallpaper.jpg" alt="Yuji Itadori" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-itadori-action-pose-wallpaper.jpg')">
@@ -230,7 +222,7 @@
           </div>
           <div class="grid-item"
             onclick="openLightbox('./jujutsu-kaisen-yuji-itadori-protagonist-wallpaper.jpg', 'Yuji Itadori Action')">
-            <img src="./jujutsu-kaisen-yuji-itadori-protagonist-wallpaper.jpg" alt="Yuji Itadori Action"
+            <img src="./optimized/jujutsu-kaisen-yuji-itadori-protagonist-wallpaper.jpg" alt="Yuji Itadori Action"
               loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
@@ -243,8 +235,49 @@
             </div>
           </div>
           <div class="grid-item"
+            onclick="openLightbox('./jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg', 'Ryomen Sukuna')">
+            <img src="./optimized/jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg" alt="Ryomen Sukuna"
+              loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
+            onclick="openLightbox('./jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg', 'Sukuna King of Curses')">
+            <img src="./optimized/jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg" alt="Sukuna King of Curses"
+              loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item" onclick="openLightbox('./Lamborghini Miura.jpg', 'Lamborghini Miura')">
+            <img src="./optimized/Lamborghini Miura.jpg" alt="Lamborghini Miura" loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./Lamborghini Miura.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
             onclick="openLightbox('./jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg', 'Yuta Okkotsu')">
-            <img src="./jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg" alt="Yuta Okkotsu" loading="lazy" />
+            <img src="./optimized/jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg" alt="Yuta Okkotsu"
+              loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg')">
@@ -256,7 +289,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./jujutsu-kaisen-ensemble-cast-wallpaper.jpg', 'JJK Cast')">
-            <img src="./jujutsu-kaisen-ensemble-cast-wallpaper.jpg" alt="JJK Cast" loading="lazy" />
+            <img src="./optimized/jujutsu-kaisen-ensemble-cast-wallpaper.jpg" alt="JJK Cast" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./jujutsu-kaisen-ensemble-cast-wallpaper.jpg')">
@@ -281,13 +314,16 @@
         <div class="collection-number">02</div>
         <h3 class="collection-title">MARVEL UNIVERSE</h3>
         <p class="collection-desc">
-          Epic heroes, legendary villains, and cinematic universe moments
+          A collection of wallpapers inspired by the Marvel universe, featuring iconic heroes, villains, and memorable
+          moments
+          from across its stories.Cinematic feel that defines Marvel — from powerful character-focused scenes to
+          large-scale action and dramatic visuals.
         </p>
         <div class="collection-meta">
           <span class="meta-tag">7 IMAGES</span><span class="meta-tag">HD</span>
         </div>
         <button class="btn-download-all" onclick="downloadCollection('marvel')">
-          DOWNLOAD ALL
+          DOWNLOAD COLLECTION
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -303,7 +339,7 @@
         </button>
         <div class="collection-grid">
           <div class="grid-item" onclick="openLightbox('./marvel-thanos-mad-titan-wallpaper.jpg', 'Thanos')">
-            <img src="./marvel-thanos-mad-titan-wallpaper.jpg" alt="Thanos" loading="lazy" />
+            <img src="./optimized/marvel-thanos-mad-titan-wallpaper.jpg" alt="Thanos" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-thanos-mad-titan-wallpaper.jpg')">
@@ -315,7 +351,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./marvel-thor-god-of-thunder-wallpaper.jpg', 'Thor')">
-            <img src="./marvel-thor-god-of-thunder-wallpaper.jpg" alt="Thor" loading="lazy" />
+            <img src="./optimized/marvel-thor-god-of-thunder-wallpaper.jpg" alt="Thor" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-thor-god-of-thunder-wallpaper.jpg')">
@@ -327,7 +363,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./marvel-loki-god-of-mischief-wallpaper.jpg', 'Loki')">
-            <img src="./marvel-loki-god-of-mischief-wallpaper.jpg" alt="Loki" loading="lazy" />
+            <img src="./optimized/marvel-loki-god-of-mischief-wallpaper.jpg" alt="Loki" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-loki-god-of-mischief-wallpaper.jpg')">
@@ -339,7 +375,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./marvel-loki-asgardian-prince-wallpaper.jpg', 'Loki Variant')">
-            <img src="./marvel-loki-asgardian-prince-wallpaper.jpg" alt="Loki Variant" loading="lazy" />
+            <img src="./optimized/marvel-loki-asgardian-prince-wallpaper.jpg" alt="Loki Variant" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-loki-asgardian-prince-wallpaper.jpg')">
@@ -351,7 +387,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./marvel-venom-symbiote-wallpaper.jpg', 'Venom')">
-            <img src="./marvel-venom-symbiote-wallpaper.jpg" alt="Venom" loading="lazy" />
+            <img src="./optimized/marvel-venom-symbiote-wallpaper.jpg" alt="Venom" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-venom-symbiote-wallpaper.jpg')">
@@ -363,7 +399,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./marvel-spider-gwen-stacy-wallpaper.jpg', 'Spider-Gwen')">
-            <img src="./marvel-spider-gwen-stacy-wallpaper.jpg" alt="Spider-Gwen" loading="lazy" />
+            <img src="./optimized/marvel-spider-gwen-stacy-wallpaper.jpg" alt="Spider-Gwen" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-spider-gwen-stacy-wallpaper.jpg')">
@@ -375,7 +411,7 @@
             </div>
           </div>
           <div class="grid-item" onclick="openLightbox('./marvel-aunt-may-parker-wallpaper.jpg', 'May')">
-            <img src="./marvel-aunt-may-parker-wallpaper.jpg" alt="May" loading="lazy" />
+            <img src="./optimized/marvel-aunt-may-parker-wallpaper.jpg" alt="May" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-aunt-may-parker-wallpaper.jpg')">
@@ -395,18 +431,23 @@
         </button>
       </div>
     </div>
-    <div class="collection-card" data-collection="strangerthings">
+
+    <div class="collection-card" data-collection="movies">
       <div class="collection-header">
         <div class="collection-number">03</div>
-        <h3 class="collection-title">STRANGER THINGS</h3>
+        <h3 class="collection-title">MOVIES & SHOWS</h3>
         <p class="collection-desc">
-          Journey to the Upside Down with Vecna and the Hawkins crew
+          A curated collection of wallpapers inspired by popular movies and television series, ranging from Breaking Bad
+          to
+          Stranger Things, and films like John Wick to Interstellar. This category captures iconic characters, memorable
+          moments,
+          and the overall mood of each story — whether it’s intense, emotional, dark, or cinematic.
         </p>
         <div class="collection-meta">
-          <span class="meta-tag">5 IMAGES</span><span class="meta-tag">HD</span>
+          <span class="meta-tag">6 IMAGES</span><span class="meta-tag">HD</span>
         </div>
-        <button class="btn-download-all" onclick="downloadCollection('strangerthings')">
-          DOWNLOAD ALL
+        <button class="btn-download-all" onclick="downloadCollection('movies')">
+          DOWNLOAD COLLECTION
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -422,8 +463,35 @@
         </button>
         <div class="collection-grid">
           <div class="grid-item"
+            onclick="openLightbox('./movie-interstellar-space-exploration-wallpaper.jpg', 'Interstellar')">
+            <img src="./optimized/movie-interstellar-space-exploration-wallpaper.jpg" alt="Interstellar"
+              loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./movie-interstellar-space-exploration-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
+            onclick="openLightbox('./tv-show-breaking-bad-heisenberg-wallpaper.jpg', 'Breaking Bad')">
+            <img src="./optimized/tv-show-breaking-bad-heisenberg-wallpaper.jpg" alt="Breaking Bad" loading="lazy" />
+            <div class="item-overlay">
+              <button class="btn-quick-download"
+                onclick="event.stopPropagation(); downloadImage('./tv-show-breaking-bad-heisenberg-wallpaper.jpg')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="grid-item"
             onclick="openLightbox('./tv-show-stranger-things-cast-wallpaper.jpg', 'Stranger Things')">
-            <img src="./tv-show-stranger-things-cast-wallpaper.jpg" alt="Stranger Things" loading="lazy" />
+            <img src="./optimized/tv-show-stranger-things-cast-wallpaper.jpg" alt="Stranger Things" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./tv-show-stranger-things-cast-wallpaper.jpg')">
@@ -434,19 +502,8 @@
               </button>
             </div>
           </div>
-          <div class="grid-item" onclick="openLightbox('./stranger.jpg', 'Stranger Things Cast')">
-            <img src="./stranger.jpg" alt="Stranger Things Cast" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download" onclick="event.stopPropagation(); downloadImage('./stranger.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
           <div class="grid-item" onclick="openLightbox('./tv-show-stranger-things-vecna-wallpaper.jpg', 'Vecna')">
-            <img src="./tv-show-stranger-things-vecna-wallpaper.jpg" alt="Vecna" loading="lazy" />
+            <img src="./optimized/tv-show-stranger-things-vecna-wallpaper.jpg" alt="Vecna" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./tv-show-stranger-things-vecna-wallpaper.jpg')">
@@ -459,7 +516,8 @@
           </div>
           <div class="grid-item"
             onclick="openLightbox('./tv-show-stranger-things-will-vecna-wallpaper.jpg', 'Will and Vecna')">
-            <img src="./tv-show-stranger-things-will-vecna-wallpaper.jpg" alt="Will and Vecna" loading="lazy" />
+            <img src="./optimized/tv-show-stranger-things-will-vecna-wallpaper.jpg" alt="Will and Vecna"
+              loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./tv-show-stranger-things-will-vecna-wallpaper.jpg')">
@@ -472,7 +530,8 @@
           </div>
           <div class="grid-item"
             onclick="openLightbox('./marvel-steve-rogers-captain-america-wallpaper.jpg', 'Steve Harrington')">
-            <img src="./marvel-steve-rogers-captain-america-wallpaper.jpg" alt="Steve Harrington" loading="lazy" />
+            <img src="./optimized/marvel-steve-rogers-captain-america-wallpaper.jpg" alt="Steve Harrington"
+              loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./marvel-steve-rogers-captain-america-wallpaper.jpg')">
@@ -492,79 +551,20 @@
         </button>
       </div>
     </div>
-    <div class="collection-card" data-collection="movies">
-      <div class="collection-header">
-        <div class="collection-number">04</div>
-        <h3 class="collection-title">MOVIES & SHOWS</h3>
-        <p class="collection-desc">
-          Epic cinematic moments from Interstellar to Breaking Bad
-        </p>
-        <div class="collection-meta">
-          <span class="meta-tag">2 IMAGES</span><span class="meta-tag">HD</span>
-        </div>
-        <button class="btn-download-all" onclick="downloadCollection('movies')">
-          DOWNLOAD ALL
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-      </div>
-      <div class="collection-wrapper">
-        <button class="nav-btn nav-prev">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </button>
-        <div class="collection-grid">
-          <div class="grid-item"
-            onclick="openLightbox('./movie-interstellar-space-exploration-wallpaper.jpg', 'Interstellar')">
-            <img src="./movie-interstellar-space-exploration-wallpaper.jpg" alt="Interstellar" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./movie-interstellar-space-exploration-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="grid-item"
-            onclick="openLightbox('./tv-show-breaking-bad-heisenberg-wallpaper.jpg', 'Breaking Bad')">
-            <img src="./tv-show-breaking-bad-heisenberg-wallpaper.jpg" alt="Breaking Bad" loading="lazy" />
-            <div class="item-overlay">
-              <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./tv-show-breaking-bad-heisenberg-wallpaper.jpg')">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
-                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <button class="nav-btn nav-next">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </button>
-      </div>
-    </div>
     <div class="collection-card" data-collection="cars">
       <div class="collection-header">
-        <div class="collection-number">05</div>
+        <div class="collection-number">04</div>
         <h3 class="collection-title">SPEED & WHEELS</h3>
         <p class="collection-desc">
-          Lightning fast action from Pixar's Cars universe. Kachow!
+          A collection of wallpapers centered around cars, speed, and automotive culture. This category features a mix
+          of modern supercars, classic designs, and performance-focused visuals that highlight motion, power, and style.
+          Pure adrenaline for your screen. Kachaow!
         </p>
         <div class="collection-meta">
           <span class="meta-tag">2 IMAGES</span><span class="meta-tag">HD</span>
         </div>
         <button class="btn-download-all" onclick="downloadCollection('cars')">
-          DOWNLOAD ALL
+          DOWNLOAD COLLECTION
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -581,7 +581,7 @@
         <div class="collection-grid">
           <div class="grid-item"
             onclick="openLightbox('./disney-lightning-mcqueen-cars-wallpaper.jpg', 'Lightning McQueen')">
-            <img src="./disney-lightning-mcqueen-cars-wallpaper.jpg" alt="Lightning McQueen" loading="lazy" />
+            <img src="./optimized/disney-lightning-mcqueen-cars-wallpaper.jpg" alt="Lightning McQueen" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./disney-lightning-mcqueen-cars-wallpaper.jpg')">
@@ -592,12 +592,11 @@
               </button>
             </div>
           </div>
-          <div class="grid-item"
-            onclick="openLightbox('./demon-slayer-meiji-era-setting-wallpaper.jpg', 'Lamborghini')">
-            <img src="./demon-slayer-meiji-era-setting-wallpaper.jpg" alt="Lamborghini" loading="lazy" />
+          <div class="grid-item" onclick="openLightbox('lamborghini-miura-wallpaper.jpg', 'Lamborghini Miura')">
+            <img src="optimized/lamborghini-miura-wallpaper.jpg" alt="Lamborghini Miura" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
-                onclick="event.stopPropagation(); downloadImage('./demon-slayer-meiji-era-setting-wallpaper.jpg')">
+                onclick="event.stopPropagation(); downloadImage('lamborghini-miura-wallpaper.jpg')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -617,16 +616,20 @@
 
     <div class="collection-card" data-collection="transformers">
       <div class="collection-header">
-        <div class="collection-number">06</div>
+        <div class="collection-number">05</div>
         <h3 class="collection-title">TRANSFORMERS</h3>
         <p class="collection-desc">
-          More than meets the eye - Autobots and Decepticons in epic battles
+          A collection of wallpapers featuring well-known Transformers characters such as Optimus Prime, Bumblebee,
+          Megatron, and
+          Optimus Primal. This category reflects themes of leadership, conflict, loyalty, and transformation that define
+          the
+          Transformers universe.
         </p>
         <div class="collection-meta">
           <span class="meta-tag">1 IMAGE</span><span class="meta-tag">HD</span>
         </div>
         <button class="btn-download-all" onclick="downloadCollection('transformers')">
-          DOWNLOAD ALL
+          DOWNLOAD COLLECTION
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -643,7 +646,7 @@
         <div class="collection-grid">
           <div class="grid-item"
             onclick="openLightbox('./disney-optimus-prime-transformers-wallpaper.jpg', 'Optimus Prime')">
-            <img src="./disney-optimus-prime-transformers-wallpaper.jpg" alt="Optimus Prime" loading="lazy" />
+            <img src="./optimized/disney-optimus-prime-transformers-wallpaper.jpg" alt="Optimus Prime" loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
                 onclick="event.stopPropagation(); downloadImage('./disney-optimus-prime-transformers-wallpaper.jpg')">
@@ -664,18 +667,21 @@
       </div>
     </div>
 
-    <<<<<<< HEAD <div class="collection-card" data-collection="random">
+    <div class="collection-card" data-collection="random">
       <div class="collection-header">
-        <div class="collection-number">07</div>
-        <h3 class="collection-title">RANDOM VIBES</h3>
+        <div class="collection-number">06</div>
+        <h3 class="collection-title">RANDOMS</h3>
         <p class="collection-desc">
-          Unique and miscellaneous wallpapers that don't fit anywhere else
+          A mixed collection of wallpapers that don’t follow a single theme or category. This section includes a variety
+          of
+          styles, moods, and ideas — from minimal designs and creative art to unexpected scenes and experimental
+          visuals.
         </p>
         <div class="collection-meta">
           <span class="meta-tag">2 IMAGES</span><span class="meta-tag">HD</span>
         </div>
         <button class="btn-download-all" onclick="downloadCollection('random')">
-          DOWNLOAD ALL
+          DOWNLOAD COLLECTION
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -692,7 +698,7 @@
         <div class="collection-grid">
           <div class="grid-item"
             onclick="openLightbox('./sneaker-jordan-lost-and-found-retro-wallpaper.jpg', 'Jordan 1 Lost and Found')">
-            <img src="./sneaker-jordan-lost-and-found-retro-wallpaper.jpg" alt="Jordan 1 Lost and Found"
+            <img src="./optimized/sneaker-jordan-lost-and-found-retro-wallpaper.jpg" alt="Jordan 1 Lost and Found"
               loading="lazy" />
             <div class="item-overlay">
               <button class="btn-quick-download"
@@ -712,25 +718,31 @@
           </svg>
         </button>
       </div>
-      </div>
+    </div>
   </section>
   <section class="about" id="about">
     <div class="section-badge">ABOUT</div>
-    <h3 class="about-title">CURATED BY AKSH THAKKAR</h3>
+    <h3 class="about-title">
+      CURATED BY YOURS TRULY
+      <span class="about-signature">~ Aksh</span>
+    </h3>
     <div class="about-content">
       <div class="about-avatar-wrap">
         <img src="https://avatars.githubusercontent.com/u/156109288?v=4" alt="Aksh Thakkar" class="about-avatar" />
       </div>
       <div class="about-text">
         <p>
-          A curated collection of high-quality wallpapers featuring anime
-          series like Demon Slayer and Jujutsu Kaisen, along with popular
-          movies and shows from Marvel, Stranger Things, and more. All
-          wallpapers are optimized for desktop and mobile displays.
+          I created this collection as a wallpaper enthusiast who enjoys customizing desktop setups and experimenting
+          with
+          different styles. The wallpapers here reflect a wide range of interests, including anime-inspired art,
+          superheroes,
+          movies, and TV shows, all brought together in one place. Each wallpaper is carefully selected and upscaled for
+          high-quality desktop displays, with an emphasis on sharp details, clean composition, and overall visual
+          balance.
         </p>
         <p>
-          Each wallpaper has been carefully selected to showcase the best
-          moments, characters, and artistic styles from these beloved series.
+          The goal is simple — wallpapers that look great on any screen and make you change your wallpaper “just one
+          more time.”
         </p>
         <div class="about-links">
           <a href="https://github.com/akshhthakkar/wallpapers" target="_blank" class="about-btn">
@@ -764,110 +776,6 @@
     </svg>
   </button>
   <script src="script.js"></script>
-  =======
-  <footer>
-    <p>© Aksh Thakkar Wallpapers Collection</p>
-  </footer>
-  </div>
-
-  <script>
-    const wallpapers = [
-      { name: "Demon Slayer Akaza Upper Moon Wallpaper", file: "demon-slayer-akaza-upper-moon-wallpaper.jpg" },
-      { name: "Tv Show Breaking Bad Heisenberg Wallpaper", file: "tv-show-breaking-bad-heisenberg-wallpaper.jpg" },
-      { name: "Demon Slayer Gyomei Stone Hashira Wallpaper", file: "demon-slayer-gyomei-stone-hashira-wallpaper.jpg" },
-      { name: "Movie Interstellar Space Exploration Wallpaper", file: "movie-interstellar-space-exploration-wallpaper.jpg" },
-      { name: "Jujutsu Kaisen Itadori Action Pose Wallpaper", file: "jujutsu-kaisen-itadori-action-pose-wallpaper.jpg" },
-      { name: "Jujutsu Kaisen Ensemble Cast Wallpaper", file: "jujutsu-kaisen-ensemble-cast-wallpaper.jpg" },
-      { name: "Sneaker Jordan Lost And Found Retro Wallpaper", file: "sneaker-jordan-lost-and-found-retro-wallpaper.jpg" },
-      { name: "Marvel Loki God Of Mischief Wallpaper", file: "marvel-loki-god-of-mischief-wallpaper.jpg" },
-      { name: "Marvel Loki Asgardian Prince Wallpaper", file: "marvel-loki-asgardian-prince-wallpaper.jpg" },
-      { name: "Marvel Aunt May Parker Wallpaper", file: "marvel-aunt-may-parker-wallpaper.jpg" },
-      { name: "Disney Lightning Mcqueen Cars Wallpaper", file: "disney-lightning-mcqueen-cars-wallpaper.jpg" },
-      { name: "Demon Slayer Meiji Era Setting Wallpaper", file: "demon-slayer-meiji-era-setting-wallpaper.jpg" },
-      { name: "Demon Slayer Obanai Serpent Hashira Wallpaper", file: "demon-slayer-obanai-serpent-hashira-wallpaper.jpg" },
-      { name: "Disney Optimus Prime Transformers Wallpaper", file: "disney-optimus-prime-transformers-wallpaper.jpg" },
-      { name: "Marvel Spider Gwen Stacy Wallpaper", file: "marvel-spider-gwen-stacy-wallpaper.jpg" },
-      { name: "Marvel Steve Rogers Captain America Wallpaper", file: "marvel-steve-rogers-captain-america-wallpaper.jpg" },
-      { name: "Tv Show Stranger Things Cast Wallpaper", file: "tv-show-stranger-things-cast-wallpaper.jpg" },
-      { name: "Tv Show Stranger Things Upside Down Wallpaper", file: "tv-show-stranger-things-upside-down-wallpaper.jpg" },
-      { name: "Jujutsu Kaisen Sukuna King Of Curses Wallpaper", file: "jujutsu-kaisen-sukuna-king-of-curses-wallpaper.jpg" },
-      { name: "Jujutsu Kaisen Sukuna Domain Expansion Wallpaper", file: "jujutsu-kaisen-sukuna-domain-expansion-wallpaper.jpg" },
-      { name: "Demon Slayer Tanjiro Kamado Wallpaper", file: "demon-slayer-tanjiro-kamado-wallpaper.jpg" },
-      { name: "Marvel Thanos Mad Titan Wallpaper", file: "marvel-thanos-mad-titan-wallpaper.jpg" },
-      { name: "Marvel Thor God Of Thunder Wallpaper", file: "marvel-thor-god-of-thunder-wallpaper.jpg" },
-      { name: "Tv Show Stranger Things Vecna Wallpaper", file: "tv-show-stranger-things-vecna-wallpaper.jpg" },
-      { name: "Marvel Venom Symbiote Wallpaper", file: "marvel-venom-symbiote-wallpaper.jpg" },
-      { name: "Tv Show Stranger Things Will Vecna Wallpaper", file: "tv-show-stranger-things-will-vecna-wallpaper.jpg" },
-      { name: "Jujutsu Kaisen Yuji Itadori Protagonist Wallpaper", file: "jujutsu-kaisen-yuji-itadori-protagonist-wallpaper.jpg" },
-      { name: "Jujutsu Kaisen Yuta Okkotsu Special Grade Wallpaper", file: "jujutsu-kaisen-yuta-okkotsu-special-grade-wallpaper.jpg" },
-      { name: "Demon Slayer Zenitsu Thunder Breathing Wallpaper", file: "demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg" },
-      { name: "Demon Slayer Zenitsu Yellow Lightning Wallpaper", file: "demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg" },
-    ];
-
-    const gallery = document.getElementById("gallery");
-
-    wallpapers.forEach((wallpaper, index) => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.style.animationDelay = `${index * 0.05}s`;
-
-      const encodedFile = encodeURIComponent(wallpaper.file);
-
-      const imageWrapper = document.createElement("div");
-      imageWrapper.className = "card-image-wrapper";
-
-      const img = document.createElement("img");
-      img.dataset.src = encodedFile;
-      img.alt = wallpaper.name;
-
-      // Lazy load images
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const image = entry.target;
-              image.src = image.dataset.src;
-              image.onload = () => {
-                image.classList.add("loaded");
-                imageWrapper.querySelector("::before")?.remove();
-              };
-              observer.unobserve(image);
-            }
-          });
-        },
-        { rootMargin: "50px" }
-      );
-
-      observer.observe(img);
-
-      const overlay = document.createElement("div");
-      overlay.className = "card-overlay";
-
-      imageWrapper.appendChild(img);
-      imageWrapper.appendChild(overlay);
-
-      const content = document.createElement("div");
-      content.className = "card-content";
-
-      const title = document.createElement("div");
-      title.className = "card-title";
-      title.textContent = wallpaper.name;
-
-      const downloadBtn = document.createElement("a");
-      downloadBtn.href = encodedFile;
-      downloadBtn.download = wallpaper.file;
-      downloadBtn.className = "download-btn";
-      downloadBtn.innerHTML =
-        '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v10M4 8l4 4 4-4M2 14h12"/></svg><span>Download</span>';
-
-      content.appendChild(title);
-      content.appendChild(downloadBtn);
-      card.appendChild(imageWrapper);
-      card.appendChild(content);
-      gallery.appendChild(card);
-    });
-  </script>
-  >>>>>>> 83e201b943dd615b724d846875ea8fc6699a02e2
 </body>
 
 </html>
