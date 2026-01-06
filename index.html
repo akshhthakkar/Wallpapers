@@ -160,29 +160,26 @@
       wallpapers.forEach((wallpaper) => {
         const card = document.createElement("div");
         card.className = "card";
-        
+
+        const encodedFile = encodeURIComponent(wallpaper.file);
+
         const img = document.createElement("img");
-        img.src = wallpaper.file;
+        img.src = encodedFile;
         img.alt = wallpaper.name;
-        img.loading = "lazy";
-        img.onerror = function() {
-          console.error('Failed to load:', wallpaper.file);
-          this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="250"><rect width="300" height="250" fill="%23ddd"/><text x="50%" y="50%" text-anchor="middle" fill="%23999">Image not found</text></svg>';
-        };
-        
+
         const content = document.createElement("div");
         content.className = "card-content";
-        
+
         const title = document.createElement("div");
         title.className = "card-title";
         title.textContent = wallpaper.name;
-        
+
         const downloadBtn = document.createElement("a");
-        downloadBtn.href = wallpaper.file;
+        downloadBtn.href = encodedFile;
         downloadBtn.download = wallpaper.file;
         downloadBtn.className = "download-btn";
         downloadBtn.textContent = "⬇️ Download";
-        
+
         content.appendChild(title);
         content.appendChild(downloadBtn);
         card.appendChild(img);
