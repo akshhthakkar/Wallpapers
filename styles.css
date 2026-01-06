@@ -297,10 +297,12 @@ body {
       rgba(255, 0, 64, 0.08) 0%,
       transparent 50%
     );
-  z-index: -1;
+  z-index: 0;
 }
 
 .hero-badge {
+  position: relative;
+  z-index: 1;
   display: inline-block;
   padding: 0.6rem 1.5rem;
   background: var(--color-surface);

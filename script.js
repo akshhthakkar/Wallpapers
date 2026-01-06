@@ -557,20 +557,38 @@ const initScrollReveal = () => {
   revealElements.forEach((el) => revealObserver.observe(el));
 };
 
-initScrollReveal();
+// Initialize ScrollReveal safely
+if (typeof initScrollReveal === "function") initScrollReveal();
 
-// MOBILE MENU TOGGLE
-function toggleMenu() {
-  const navLinks = document
-    .getElementById("mainNav")
-    .querySelector(".nav-right"); // Adjusted selector
-  const toggleBtn = document.querySelector(".mobile-toggle");
-
-  if (navLinks && toggleBtn) {
-    navLinks.classList.toggle("active");
-    toggleBtn.classList.toggle("active");
-    document.body.style.overflow = navLinks.classList.contains("active")
-      ? "hidden"
-      : "auto";
+// Initialize main logic after DOM Content Loaded
+document.addEventListener("DOMContentLoaded", () => {
+  // Console check for GSAP
+  if (typeof gsap === "undefined") {
+    console.warn("GSAP not loaded! Check internet connection or CDN limits.");
+    return;
   }
-}
+
+  // Register plugins safely
+  if (
+    typeof ScrollTrigger !== "undefined" &&
+    typeof ScrollToPlugin !== "undefined"
+  ) {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  }
+
+  // Define global toggleMenu for HTML onclick access
+  window.toggleMenu = function () {
+    const navLinks = document
+      .getElementById("mainNav")
+      .querySelector(".nav-right");
+    const toggleBtn = document.querySelector(".mobile-toggle");
+
+    if (navLinks && toggleBtn) {
+      navLinks.classList.toggle("active");
+      toggleBtn.classList.toggle("active");
+      document.body.style.overflow = navLinks.classList.contains("active")
+        ? "hidden"
+        : "auto";
+    }
+  };
+});
