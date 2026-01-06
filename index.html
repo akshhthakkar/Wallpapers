@@ -12,109 +12,187 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #0a0a0a;
+        color: #ffffff;
         min-height: 100vh;
-        padding: 20px;
+        overflow-x: hidden;
       }
 
       .container {
-        max-width: 1400px;
+        max-width: 1600px;
         margin: 0 auto;
+        padding: 0 20px;
       }
 
       header {
+        padding: 60px 0 40px;
         text-align: center;
-        color: white;
-        margin-bottom: 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 60px;
       }
 
       header h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+        background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       header p {
-        font-size: 1.2em;
-        opacity: 0.9;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        color: #888;
+        font-weight: 400;
+        letter-spacing: 0.01em;
       }
 
       .gallery {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
-        margin-bottom: 40px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+        padding-bottom: 80px;
+      }
+
+      @media (min-width: 768px) {
+        .gallery {
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 32px;
+        }
       }
 
       .card {
-        background: white;
-        border-radius: 12px;
+        background: #111;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        cursor: pointer;
       }
 
       .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        transform: translateY(-8px);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .card-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16/10;
+        background: #1a1a1a;
       }
 
       .card img {
         width: 100%;
-        height: 250px;
+        height: 100%;
         object-fit: cover;
         display: block;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card:hover img {
+        transform: scale(1.05);
+      }
+
+      .card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .card:hover .card-overlay {
+        opacity: 1;
       }
 
       .card-content {
-        padding: 15px;
+        padding: 20px;
       }
 
       .card-title {
-        font-size: 1.1em;
+        font-size: 1rem;
         font-weight: 600;
-        margin-bottom: 10px;
-        color: #333;
+        margin-bottom: 14px;
+        color: #ffffff;
+        letter-spacing: -0.01em;
       }
 
       .download-btn {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
         width: 100%;
-        padding: 10px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
         text-align: center;
         text-decoration: none;
-        border-radius: 6px;
-        font-weight: 600;
-        transition: opacity 0.3s ease;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
       }
 
       .download-btn:hover {
-        opacity: 0.9;
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
       }
 
       footer {
         text-align: center;
-        color: white;
-        padding: 20px;
-        opacity: 0.8;
+        padding: 40px 20px 60px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 60px;
+      }
+
+      footer p {
+        color: #666;
+        font-size: 0.9rem;
+        font-weight: 400;
+      }
+
+      @media (max-width: 640px) {
+        header {
+          padding: 40px 0 30px;
+          margin-bottom: 40px;
+        }
+
+        .gallery {
+          gap: 20px;
+          padding-bottom: 60px;
+        }
+
+        .card-content {
+          padding: 16px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>🎨 Wallpapers Collection</h1>
-        <p>High-quality wallpapers from anime, movies, and pop culture</p>
+        <h1>Wallpapers</h1>
+        <p>High-quality wallpaper collection!</p>
       </header>
 
       <div class="gallery" id="gallery"></div>
 
       <footer>
-        <p>Personal wallpaper collection • All images stored with Git LFS</p>
+        <p>© Aksh Thakkar Wallpapers Collection</p>
       </footer>
     </div>
 
@@ -163,9 +241,18 @@
 
         const encodedFile = encodeURIComponent(wallpaper.file);
 
+        const imageWrapper = document.createElement("div");
+        imageWrapper.className = "card-image-wrapper";
+
         const img = document.createElement("img");
         img.src = encodedFile;
         img.alt = wallpaper.name;
+
+        const overlay = document.createElement("div");
+        overlay.className = "card-overlay";
+
+        imageWrapper.appendChild(img);
+        imageWrapper.appendChild(overlay);
 
         const content = document.createElement("div");
         content.className = "card-content";
@@ -178,11 +265,12 @@
         downloadBtn.href = encodedFile;
         downloadBtn.download = wallpaper.file;
         downloadBtn.className = "download-btn";
-        downloadBtn.textContent = "⬇️ Download";
+        downloadBtn.innerHTML =
+          '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v10M4 8l4 4 4-4M2 14h12"/></svg><span>Download</span>';
 
         content.appendChild(title);
         content.appendChild(downloadBtn);
-        card.appendChild(img);
+        card.appendChild(imageWrapper);
         card.appendChild(content);
         gallery.appendChild(card);
       });
