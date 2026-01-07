@@ -440,7 +440,7 @@ function renderCollection(category, items) {
     gridItem.innerHTML = `
       <img src="${item.optimized}" alt="${item.title}" loading="lazy" />
       <div class="item-overlay">
-        <button class="btn-quick-download" onclick="event.stopPropagation(); downloadImage('${item.original}')">
+        <button class="btn-quick-download" aria-label="Download ${item.title}" onclick="event.stopPropagation(); downloadImage('${item.original}')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
