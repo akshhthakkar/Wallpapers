@@ -152,6 +152,7 @@ function renderSubmissions() {
           <span><strong>Date:</strong> ${formatDate(
             submission.created_at
           )}</span>
+          <span><strong>IP:</strong> ${submission.ip_address || "N/A"}</span>
         </div>
         <div class="submission-actions">
           ${getActionButtons(submission)}
