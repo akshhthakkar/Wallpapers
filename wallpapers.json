@@ -119,12 +119,6 @@
       "original": "./wallpapers/marvel/marvel-spider-gwen-stacy-wallpaper.jpg"
     },
     {
-      "file": "marvel-steve-rogers-captain-america-wallpaper.jpg",
-      "title": "Steve Rogers Captain America",
-      "optimized": "./optimized/marvel/marvel-steve-rogers-captain-america-wallpaper.jpg",
-      "original": "./wallpapers/marvel/marvel-steve-rogers-captain-america-wallpaper.jpg"
-    },
-    {
       "file": "marvel-thanos-mad-titan-wallpaper.jpg",
       "title": "Thanos Mad Titan",
       "optimized": "./optimized/marvel/marvel-thanos-mad-titan-wallpaper.jpg",
@@ -179,6 +173,12 @@
       "title": "Friends Netlfix",
       "optimized": "./optimized/movies/tv-show-friends-netlfix-wallpaper.jpg",
       "original": "./wallpapers/movies/tv-show-friends-netlfix-wallpaper.jpg"
+    },
+    {
+      "file": "tv-show-stranger things-steve.jpg",
+      "title": "Stranger things Steve",
+      "optimized": "./optimized/movies/tv-show-stranger things-steve.jpg",
+      "original": "./wallpapers/movies/tv-show-stranger things-steve.jpg"
     },
     {
       "file": "tv-show-stranger-things-cast-wallpaper.jpg",
