@@ -139,20 +139,24 @@ backToTopBtn.addEventListener("click", () => {
 });
 
 // IMAGE PRELOADING (Performance)
-// Preload the first few images to ensure hero/top collections look instant
-function preloadImages() {
-  const imagesToPreload = [
-    "./optimized/demon-slayer-zenitsu-yellow-lightning-wallpaper.jpg",
-    "./optimized/demon-slayer-zenitsu-thunder-breathing-wallpaper.jpg",
-    "./optimized/demon-slayer-tanjiro-kamado-wallpaper.jpg",
-  ];
+// Preload a few random images from the first loaded category
+function preloadImages(data) {
+  const categories = Object.keys(data);
+  if (categories.length === 0) return;
+
+  // Pick first category or random one
+  const firstCategory = categories[0];
+  const items = data[firstCategory];
+
+  // Preload up to 3 images from this category
+  const imagesToPreload = items.slice(0, 3).map((item) => item.optimized);
 
   imagesToPreload.forEach((src) => {
     const img = new Image();
     img.src = src;
   });
 }
-window.addEventListener("load", preloadImages);
+// window.addEventListener("load", preloadImages); // Removed: Called dynamically now
 
 // AUTO-SCROLL COLLECTIONS (Optimized)
 // AUTO-SCROLL COLLECTIONS (Optimized)
@@ -265,6 +269,9 @@ async function loadWallpapers() {
       collections[category] = data[category].map((item) => item.file);
       renderCollection(category, data[category]);
     });
+
+    // Start preloading
+    preloadImages(data);
 
     // Re-initialize logic that depends on DOM content
     // We need to wait for DOM to be populated before initializing sliders

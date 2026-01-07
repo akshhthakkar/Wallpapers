@@ -36,7 +36,12 @@ const optimizeImage = async (category, file) => {
     // console.log(`Optimizing ${category}/${file}...`);
 
     await sharp(inputPath)
-      .resize({ width: 1920, withoutEnlargement: true })
+      .resize({
+        width: 1920,
+        height: 1080,
+        fit: "cover",
+        position: "center",
+      })
       .jpeg({ quality: 80, mozjpeg: true })
       .toFile(outputPath);
 
