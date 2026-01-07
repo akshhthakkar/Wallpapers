@@ -33,9 +33,20 @@ const optimizeImage = async (category, file) => {
       return false;
     }
 
-    // console.log(`Optimizing ${category}/${file}...`);
+    const image = sharp(inputPath);
+    const metadata = await image.metadata();
 
-    await sharp(inputPath)
+    // Check if portrait (height > width)
+    if (metadata.width < metadata.height) {
+      // Rotate 90 degrees to make it landscape
+      // This will swap dimensions, so 1000x2000 becomes 2000x1000
+      image.rotate(90);
+    }
+
+    // Resize to standard landscape resolution
+    // 'cover' ensures the image fills the 1920x1080 frame completely
+    // It will crop any excess after rotation if aspect ratio is not exactly 16:9
+    await image
       .resize({
         width: 1920,
         height: 1080,
@@ -82,7 +93,7 @@ const getTitle = (filename) => {
 };
 
 const main = async () => {
-  console.log("Starting wallpaper generation process...");
+  console.log("Starting wallpaper generation process (+ Auto Rotate)...");
 
   try {
     if (!fs.existsSync(inputDir)) {
