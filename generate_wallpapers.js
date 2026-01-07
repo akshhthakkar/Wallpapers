@@ -33,19 +33,23 @@ const optimizeImage = async (category, file) => {
       return false;
     }
 
-    const image = sharp(inputPath);
+    // Step 1: Auto-orient based on EXIF to match what user sees in Explorer
+    // We render to buffer to bake this rotation in before checking dimensions
+    const buffer = await sharp(inputPath).rotate().toBuffer();
+
+    // Step 2: Load the normalized image
+    let image = sharp(buffer);
     const metadata = await image.metadata();
 
-    // Check if portrait (height > width)
+    // Step 3: Check dimensions of the normalized image
+    // If it is Portrait (Height > Width), rotate it 90 degrees to make it Landscape
     if (metadata.width < metadata.height) {
-      // Rotate 90 degrees to make it landscape
-      // This will swap dimensions, so 1000x2000 becomes 2000x1000
-      image.rotate(90);
+      // Apply 90 deg rotation
+      image = image.rotate(90);
     }
 
-    // Resize to standard landscape resolution
+    // Step 4: Resize to standard landscape resolution
     // 'cover' ensures the image fills the 1920x1080 frame completely
-    // It will crop any excess after rotation if aspect ratio is not exactly 16:9
     await image
       .resize({
         width: 1920,
@@ -93,7 +97,9 @@ const getTitle = (filename) => {
 };
 
 const main = async () => {
-  console.log("Starting wallpaper generation process (+ Auto Rotate)...");
+  console.log(
+    "Starting wallpaper generation process (+ Auto-Orient & Rotate)..."
+  );
 
   try {
     if (!fs.existsSync(inputDir)) {
