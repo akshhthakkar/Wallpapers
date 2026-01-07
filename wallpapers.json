@@ -113,6 +113,12 @@
       "original": "./wallpapers/marvel/marvel-loki-god-of-mischief-wallpaper.jpg"
     },
     {
+      "file": "marvel-loki-god-of-mischief.jpg",
+      "title": "Loki God Of Mischief",
+      "optimized": "./optimized/marvel/marvel-loki-god-of-mischief.jpg",
+      "original": "./wallpapers/marvel/marvel-loki-god-of-mischief.jpg"
+    },
+    {
       "file": "marvel-spider-gwen-stacy-wallpaper.jpg",
       "title": "Spider Gwen Stacy",
       "optimized": "./optimized/marvel/marvel-spider-gwen-stacy-wallpaper.jpg",
@@ -141,12 +147,6 @@
       "title": "Marvel_captain_america",
       "optimized": "./optimized/marvel/marvel_captain_america.jpg",
       "original": "./wallpapers/marvel/marvel_captain_america.jpg"
-    },
-    {
-      "file": "marvel_captain_america_end_game.jpg",
-      "title": "Marvel_captain_america_end_game",
-      "optimized": "./optimized/marvel/marvel_captain_america_end_game.jpg",
-      "original": "./wallpapers/marvel/marvel_captain_america_end_game.jpg"
     },
     {
       "file": "marvel_thor_wakanda.jpg",
@@ -206,12 +206,6 @@
     }
   ],
   "random": [
-    {
-      "file": "marve-loki_god_of_mischief.jpg",
-      "title": "Marve Loki_god_of_mischief",
-      "optimized": "./optimized/random/marve-loki_god_of_mischief.jpg",
-      "original": "./wallpapers/random/marve-loki_god_of_mischief.jpg"
-    },
     {
       "file": "sneaker-jordan-lost-and-found-retro-wallpaper.jpg",
       "title": "Jordan Lost And Found Retro",
