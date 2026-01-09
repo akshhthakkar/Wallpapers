@@ -111,23 +111,6 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Cars Wallpapers -->
-  <url>
-    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=disney-lightning-mcqueen-cars-wallpaper</loc>
-    <lastmod>2026-01-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=f1-max-and-lewis</loc>
-    <lastmod>2026-01-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=lamborghini-miura-wallpaper</loc>
-    <lastmod>2026-01-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Marvel Wallpapers -->
   <url>
     <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=marvel-captain-america-end-game</loc>
@@ -195,7 +178,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Movies & TV Show Wallpapers -->
+  <!-- Movies Wallpapers -->
   <url>
     <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=how-i-met-your-mother-gang</loc>
     <lastmod>2026-01-09</lastmod>
@@ -297,6 +280,30 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Cars Wallpapers -->
+  <url>
+    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=disney-lightning-mcqueen-cars-wallpaper</loc>
+    <lastmod>2026-01-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=f1-max-and-lewis</loc>
+    <lastmod>2026-01-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=lamborghini-miura-wallpaper</loc>
+    <lastmod>2026-01-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Transformers Wallpapers -->
+  <url>
+    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=disney-optimus-prime-transformers-wallpaper</loc>
+    <lastmod>2026-01-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Random Wallpapers -->
   <url>
     <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=random-mortal-combat</loc>
@@ -305,13 +312,6 @@
   </url>
   <url>
     <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=sneaker-jordan-lost-and-found-retro-wallpaper</loc>
-    <lastmod>2026-01-09</lastmod>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Transformers Wallpapers -->
-  <url>
-    <loc>https://wallpaperverse.akshthakkar.me/wallpaper?id=disney-optimus-prime-transformers-wallpaper</loc>
     <lastmod>2026-01-09</lastmod>
     <priority>0.7</priority>
   </url>

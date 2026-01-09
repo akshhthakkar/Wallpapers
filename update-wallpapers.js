@@ -1,28 +1,32 @@
 /**
- * Wallpaper Automation Script
- * Run: node update-wallpapers.js
+ * Wallpaper Automation & Build Script
  *
- * This script:
- * 1. Scans image folders for wallpapers
- * 2. Updates wallpapers.json with new entries
- * 3. Regenerates sitemap.xml with all wallpaper URLs
+ * Functions:
+ * 1. Optimizes images (Resize to 1920x1080 + Convert to WebP) using Sharp
+ * 2. Generates wallpapers.json
+ * 3. Generates sitemap.xml
+ *
+ * Usage:
+ * - Runs automatically on Vercel deployment ("build" script)
+ * - Can be run locally: node update-wallpapers.js
  */
 
 const fs = require("fs");
 const path = require("path");
+const sharp = require("sharp");
 
 // Configuration
-const CATEGORIES = {
-  anime: "anime",
-  marvel: "marvel",
-  movies: "movies",
-  cars: "cars",
-  transformers: "transformers",
-  random: "random",
-};
-
 const SITE_URL = "https://wallpaperverse.akshthakkar.me";
-const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+const INPUT_DIR = path.join(__dirname, "wallpapers");
+const OUTPUT_DIR = path.join(__dirname, "optimized");
+const JSON_FILE = path.join(__dirname, "wallpapers.json");
+const SITEMAP_FILE = path.join(__dirname, "sitemap.xml");
+
+// Supported extensions
+const IMG_EXTS = [".jpg", ".jpeg", ".png", ".webp"];
+
+// Ensure optimized directory exists
+if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR);
 
 // Generate ID from filename
 function generateId(filename) {
@@ -32,58 +36,90 @@ function generateId(filename) {
     .toLowerCase();
 }
 
-// Generate title from filename
+// Generate Title from filename
 function generateTitle(filename) {
-  return filename
-    .replace(/\.(jpg|jpeg|png|webp)$/i, "")
+  let name = filename.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+
+  // Remove common prefixes
+  const prefixes = [
+    "demon-slayer-",
+    "jujutsu-kaisen-",
+    "marvel-",
+    "movie-",
+    "tv-show-",
+    "disney-",
+    "sneaker-",
+  ];
+  for (const p of prefixes) {
+    if (name.toLowerCase().startsWith(p)) {
+      name = name.slice(p.length);
+      break;
+    }
+  }
+
+  // Convert "tanjiro-kamado" -> "Tanjiro Kamado"
+  return name
     .replace(/[-_]+/g, " ")
     .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 }
 
-// Scan folder for images
-function scanFolder(folderPath) {
-  if (!fs.existsSync(folderPath)) return [];
+// Optimize Single Image
+async function processImage(category, filename) {
+  const inputPath = path.join(INPUT_DIR, category, filename);
+  const outputCategoryDir = path.join(OUTPUT_DIR, category);
 
-  return fs
-    .readdirSync(folderPath)
-    .filter((file) =>
-      IMAGE_EXTENSIONS.includes(path.extname(file).toLowerCase())
-    )
-    .map((file) => ({
-      file,
-      title: generateTitle(file),
-      optimized: `optimized/${path.basename(folderPath)}/${file.replace(
-        /\.(jpg|jpeg|png)$/i,
-        ".webp"
-      )}`,
-      original: `${path.basename(folderPath)}/${file}`,
-    }));
-}
+  if (!fs.existsSync(outputCategoryDir)) fs.mkdirSync(outputCategoryDir);
 
-// Update wallpapers.json
-function updateWallpapersJson() {
-  const wallpapers = {};
+  // Output is always WebP for performance
+  const outputFilename = filename.replace(/\.(jpg|jpeg|png|webp)$/i, ".webp");
+  const outputPath = path.join(outputCategoryDir, outputFilename);
 
-  Object.keys(CATEGORIES).forEach((category) => {
-    const folderPath = path.join(__dirname, category);
-    const items = scanFolder(folderPath);
-    if (items.length > 0) {
-      wallpapers[category] = items;
+  // If optimized file exists, skip (cache)
+  if (fs.existsSync(outputPath)) {
+    return {
+      success: true,
+      optimizedPath: `optimized/${category}/${outputFilename}`,
+    };
+  }
+
+  console.log(`⚙️ Optimizing: ${category}/${filename}...`);
+
+  try {
+    const pipeline = sharp(inputPath).rotate(); // Auto-rotate from EXIF
+    const metadata = await pipeline.metadata();
+
+    // Rotate portrait to landscape if needed
+    if (metadata.width < metadata.height) {
+      pipeline.rotate(90);
     }
-  });
 
-  fs.writeFileSync(
-    path.join(__dirname, "wallpapers.json"),
-    JSON.stringify(wallpapers, null, 2)
-  );
+    await pipeline
+      .resize({
+        width: 1920,
+        height: 1080,
+        fit: "cover",
+        position: "center",
+      })
+      .webp({ quality: 80 })
+      .toFile(outputPath);
 
-  console.log("✅ wallpapers.json updated");
-  return wallpapers;
+    return {
+      success: true,
+      optimizedPath: `optimized/${category}/${outputFilename}`,
+    };
+  } catch (error) {
+    console.error(`❌ Failed to optimize ${filename}:`, error.message);
+    // Fallback to original if optimization fails
+    return {
+      success: true, // soft fail
+      optimizedPath: `wallpapers/${category}/${filename}`,
+    };
+  }
 }
 
-// Generate sitemap.xml
+// Generate Sitemap
 function generateSitemap(wallpapers) {
   const today = new Date().toISOString().split("T")[0];
 
@@ -104,12 +140,9 @@ function generateSitemap(wallpapers) {
   </url>
 `;
 
-  // Add wallpaper pages
-  Object.entries(wallpapers).forEach(([category, items]) => {
-    xml += `\n  <!-- ${
-      category.charAt(0).toUpperCase() + category.slice(1)
-    } Wallpapers -->\n`;
-    items.forEach((item) => {
+  Object.values(wallpapers)
+    .flat()
+    .forEach((item) => {
       const id = generateId(item.file);
       xml += `  <url>
     <loc>${SITE_URL}/wallpaper?id=${id}</loc>
@@ -117,21 +150,60 @@ function generateSitemap(wallpapers) {
     <priority>0.7</priority>
   </url>\n`;
     });
-  });
 
   xml += "</urlset>\n";
-
-  fs.writeFileSync(path.join(__dirname, "sitemap.xml"), xml);
-
-  const totalWallpapers = Object.values(wallpapers).reduce(
-    (sum, arr) => sum + arr.length,
-    0
-  );
-  console.log(`✅ sitemap.xml updated (${totalWallpapers + 2} URLs)`);
+  fs.writeFileSync(SITEMAP_FILE, xml);
+  console.log("✅ sitemap.xml generated");
 }
 
-// Main
-console.log("🚀 Updating wallpapers and sitemap...\n");
-const wallpapers = updateWallpapersJson();
-generateSitemap(wallpapers);
-console.log("\n✨ Done! Commit and push your changes.");
+// Main Build Function
+async function build() {
+  console.log("🚀 Starting Build Process...");
+
+  if (!fs.existsSync(INPUT_DIR)) {
+    console.error("❌ wallpapers directory not found!");
+    process.exit(1);
+  }
+
+  const categories = fs
+    .readdirSync(INPUT_DIR)
+    .filter((f) => fs.statSync(path.join(INPUT_DIR, f)).isDirectory());
+
+  const wallpapers = {};
+  let count = 0;
+
+  for (const category of categories) {
+    const catFiles = fs
+      .readdirSync(path.join(INPUT_DIR, category))
+      .filter((f) => IMG_EXTS.includes(path.extname(f).toLowerCase()));
+
+    if (catFiles.length === 0) continue;
+
+    wallpapers[category] = [];
+
+    for (const file of catFiles) {
+      const result = await processImage(category, file);
+
+      if (result.success) {
+        wallpapers[category].push({
+          file: file,
+          title: generateTitle(file),
+          optimized: result.optimizedPath,
+          original: `wallpapers/${category}/${file}`,
+        });
+        count++;
+      }
+    }
+  }
+
+  // Save JSON
+  fs.writeFileSync(JSON_FILE, JSON.stringify(wallpapers, null, 2));
+  console.log(`✅ wallpapers.json generated (${count} wallpapers)`);
+
+  // Save Sitemap
+  generateSitemap(wallpapers);
+
+  console.log("\n✨ Build Complete!");
+}
+
+build();
