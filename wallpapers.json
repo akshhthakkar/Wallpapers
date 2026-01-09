@@ -7,6 +7,18 @@
       "original": "./wallpapers/anime/anime-chainsawman-denji-angry.jpg"
     },
     {
+      "file": "anime-demon-slayer-zenitsu-punch.jpeg",
+      "title": "Anime Demon Slayer Zenitsu Punch",
+      "optimized": "./optimized/anime/anime-demon-slayer-zenitsu-punch.jpeg",
+      "original": "./wallpapers/anime/anime-demon-slayer-zenitsu-punch.jpeg"
+    },
+    {
+      "file": "anime-dragonball-z-goku.jpg",
+      "title": "Anime Dragonball Z Goku",
+      "optimized": "./optimized/anime/anime-dragonball-z-goku.jpg",
+      "original": "./wallpapers/anime/anime-dragonball-z-goku.jpg"
+    },
+    {
       "file": "anime-naruto-sasuke-final-fight.jpg",
       "title": "Anime Naruto Sasuke Final Fight",
       "optimized": "./optimized/anime/anime-naruto-sasuke-final-fight.jpg",
@@ -111,6 +123,12 @@
       "original": "./wallpapers/cars/disney-lightning-mcqueen-cars-wallpaper.jpg"
     },
     {
+      "file": "f1-max-and-lewis.jpg",
+      "title": "F1 Max And Lewis",
+      "optimized": "./optimized/cars/f1-max-and-lewis.jpg",
+      "original": "./wallpapers/cars/f1-max-and-lewis.jpg"
+    },
+    {
       "file": "lamborghini-miura-wallpaper.jpg",
       "title": "Lamborghini Miura",
       "optimized": "./optimized/cars/lamborghini-miura-wallpaper.jpg",
@@ -153,6 +171,12 @@
       "title": "Spider Gwen Stacy",
       "optimized": "./optimized/marvel/marvel-spider-gwen-stacy-wallpaper.jpg",
       "original": "./wallpapers/marvel/marvel-spider-gwen-stacy-wallpaper.jpg"
+    },
+    {
+      "file": "marvel-spider-man-miles-morales.jpg",
+      "title": "Spider Man Miles Morales",
+      "optimized": "./optimized/marvel/marvel-spider-man-miles-morales.jpg",
+      "original": "./wallpapers/marvel/marvel-spider-man-miles-morales.jpg"
     },
     {
       "file": "marvel-thanos-mad-titan-wallpaper.jpg",
@@ -287,6 +311,12 @@
       "title": "Stranger Things Cast",
       "optimized": "./optimized/movies/tv-show-stranger-things-cast-wallpaper.jpg",
       "original": "./wallpapers/movies/tv-show-stranger-things-cast-wallpaper.jpg"
+    },
+    {
+      "file": "tv-show-stranger-things-steve-harrington.jpg",
+      "title": "Stranger Things Steve Harrington",
+      "optimized": "./optimized/movies/tv-show-stranger-things-steve-harrington.jpg",
+      "original": "./wallpapers/movies/tv-show-stranger-things-steve-harrington.jpg"
     },
     {
       "file": "tv-show-stranger-things-upside-down-wallpaper.jpg",
