@@ -474,35 +474,64 @@ body {
   color: var(--color-text-dim);
 }
 
+/* HERO CTA BUTTON - LIQUID NEON */
 .btn-hero {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  padding: 1.5rem 3.5rem;
-  background: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  padding: 1.2rem 4rem;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  background-size: 200% auto;
+  color: var(--color-bg); /* Dark text for contrast */
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 0.08em;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
   font-weight: 700;
-  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+  animation: liquid-gradient 3s linear infinite;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+@keyframes liquid-gradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.btn-hero span {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-hero svg {
+  transition: transform 0.4s ease;
+  z-index: 2;
 }
 
 .btn-hero:hover {
-  background: rgba(0, 217, 255, 0.1);
-  box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
-  transform: translateY(-3px) scale(1.02);
-  color: var(--color-text);
-  border-color: var(--color-text);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5), 0 0 20px rgba(255, 0, 64, 0.3);
+  padding: 1.2rem 4.5rem 1.2rem 3.5rem; /* Subtle shift */
+  color: var(--color-bg);
 }
 
-.btn-hero:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 217, 255, 0.5);
+.btn-hero:hover svg {
+  transform: translateX(8px) scale(1.2);
 }
 
 /* SEARCH CONTAINER */
