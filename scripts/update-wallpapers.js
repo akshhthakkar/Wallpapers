@@ -18,11 +18,11 @@ sharp.cache(false); // Disable cache to prevent memory issues with large files
 
 // Configuration
 const SITE_URL = "https://wallpaperverse.akshthakkar.me";
-const INPUT_DIR = path.join(__dirname, "wallpapers");
-const OUTPUT_DIR = path.join(__dirname, "optimized");
-const THUMB_DIR = path.join(__dirname, "thumbnails");
-const JSON_FILE = path.join(__dirname, "wallpapers.json");
-const SITEMAP_FILE = path.join(__dirname, "sitemap.xml");
+const INPUT_DIR = path.join(__dirname, "../wallpapers");
+const OUTPUT_DIR = path.join(__dirname, "../optimized");
+const THUMB_DIR = path.join(__dirname, "../thumbnails");
+const JSON_FILE = path.join(__dirname, "../wallpapers.json");
+const SITEMAP_FILE = path.join(__dirname, "../sitemap.xml");
 
 // Supported extensions
 const IMG_EXTS = [".jpg", ".jpeg", ".png", ".webp"];

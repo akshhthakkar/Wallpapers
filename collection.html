@@ -8,6 +8,10 @@
       name="description"
       content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more."
     />
+    <meta
+      name="keywords"
+      content="4k download desktop, laptop, wallpaper collections, 4k wallpaper packs, hd wallpaper collections, anime wallpapers, marvel wallpapers, movie wallpapers, car wallpapers, desktop backgrounds, laptop wallpapers"
+    />
     <link
       rel="canonical"
       href="https://wallpaperverse.akshthakkar.me/collection.html"
@@ -56,7 +60,7 @@
     <link rel="preload" href="wallpapers.json?v=2" as="fetch" crossorigin />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="wallpaper.css" />
     <style>
       .collection-hero {
@@ -200,8 +204,8 @@
 
     <!-- Supabase SDK for download stats -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js"></script>
-    <!-- Collection page inline script - no external script.js needed -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", async () => {
         // Parse category from URL (Support both ?id=... and #...)
