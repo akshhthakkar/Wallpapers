@@ -2,7 +2,7 @@
 
 > _"Screens so good they deserve screen time."_
 
-![Banner](https://capsule-render.vercel.app/api?type=waving&color=0:FF0055,100:00FFFF&height=300&section=header&text=WallpaperVerse&fontSize=90&animation=twinkling&fontAlign=50&fontAlignY=35&desc=Curated%20by%20Aksh%20Thakkar&descSize=20&descAlign=50&descAlignY=55&fontColor=ffffff&font=Rubik%20Glitch)
+![Banner](https://capsule-render.vercel.app/api?type=waving&color=0:FF0055,100:00FFFF&height=300&section=header&text=WallpaperVerse&fontSize=90&animation=twinkling&fontAlign=50&fontAlignY=35&fontColor=ffffff&font=Rubik%20Glitch)
 
 ## 👨‍💻 Not Just Another Repo...
 
