@@ -14,6 +14,7 @@
 const fs = require("fs");
 const path = require("path");
 const sharp = require("sharp");
+sharp.cache(false); // Disable cache to prevent memory issues with large files
 
 // Configuration
 const SITE_URL = "https://wallpaperverse.akshthakkar.me";
@@ -176,13 +177,45 @@ async function processImage(category, filename) {
       thumbnailPath: `thumbnails/${category}/${outputFilename}`,
     };
   } catch (error) {
-    console.error(`❌ Failed to optimize ${filename}:`, error.message);
-    // Fallback to original if optimization fails
-    return {
-      success: true, // soft fail
-      optimizedPath: `wallpapers/${category}/${filename}`,
-      thumbnailPath: `wallpapers/${category}/${filename}`,
-    };
+    console.warn(
+      `⚠️ Complex optimization failed for ${filename}: ${error.message}`
+    );
+    console.log(`🔄 Attempting simple fallback for ${filename}...`);
+
+    try {
+      // Fallback: Simple resize without composite (less memory intensive)
+      await sharp(inputPath)
+        .rotate()
+        .resize(1920, 1080, {
+          fit: "contain",
+          background: { r: 0, g: 0, b: 0, alpha: 1 },
+        })
+        .webp({ quality: 80 })
+        .toFile(outputPath);
+
+      await sharp(inputPath)
+        .rotate()
+        .resize(400, 225, {
+          fit: "contain",
+          background: { r: 0, g: 0, b: 0, alpha: 1 },
+        })
+        .webp({ quality: 60 })
+        .toFile(thumbPath);
+
+      return {
+        success: true,
+        optimizedPath: `optimized/${category}/${outputFilename}`,
+        thumbnailPath: `thumbnails/${category}/${outputFilename}`,
+      };
+    } catch (fallbackError) {
+      console.error(`❌ CRITICAL FAIL for ${filename}:`, fallbackError.message);
+      // Final Fallback to original
+      return {
+        success: true,
+        optimizedPath: `wallpapers/${category}/${filename}`,
+        thumbnailPath: `wallpapers/${category}/${filename}`,
+      };
+    }
   }
 }
 
