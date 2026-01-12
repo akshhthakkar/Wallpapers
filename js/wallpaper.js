@@ -138,8 +138,9 @@ function displayWallpaper(wallpaperId) {
   ).textContent = `Download this ${categoryNames[currentCategory]} wallpaper in HD quality. Free for personal use on desktop and mobile.`;
 
   // Update breadcrumb
-  document.getElementById("breadcrumb-category").textContent =
-    categoryNames[currentCategory];
+  const breadcrumbCategory = document.getElementById("breadcrumb-category");
+  breadcrumbCategory.textContent = categoryNames[currentCategory];
+  breadcrumbCategory.href = `collection.html?id=${currentCategory}`;
   document.getElementById("breadcrumb-title").textContent =
     currentWallpaper.title;
 
