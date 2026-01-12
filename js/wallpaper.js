@@ -11,6 +11,7 @@ const categoryNames = {
   marvel: "Marvel",
   movies: "Movies & TV Shows",
   cars: "Cars & Supercars",
+  football: "Football",
   transformers: "Transformers",
   random: "Random",
 };
