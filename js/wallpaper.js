@@ -10,7 +10,7 @@ const categoryNames = {
   anime: "Anime",
   marvel: "Marvel",
   movies: "Movies & TV Shows",
-  cars: "Cars & Supercars",
+  cars: "Car Culture",
   football: "Football",
   transformers: "Transformers",
   random: "Random",
@@ -20,9 +20,6 @@ const categoryNames = {
 document.addEventListener("DOMContentLoaded", async () => {
   await loadWallpaperData();
   const wallpaperId = getWallpaperIdFromUrl();
-
-  console.log("Wallpaper ID from URL:", wallpaperId);
-  console.log("Total wallpapers loaded:", allWallpapers.length);
 
   if (wallpaperId) {
     displayWallpaper(wallpaperId);
@@ -72,10 +69,6 @@ async function loadWallpaperData() {
         });
       });
     }
-    console.log(
-      "Wallpapers loaded:",
-      allWallpapers.map((w) => w.id)
-    );
   } catch (error) {
     console.error("Failed to load wallpapers:", error);
   }
@@ -91,8 +84,6 @@ function generateIdFromFile(filename) {
 
 // Display wallpaper
 function displayWallpaper(wallpaperId) {
-  console.log("Looking for wallpaper with ID:", wallpaperId);
-
   // Find wallpaper by exact ID match
   currentWallpaper = allWallpapers.find((w) => w.id === wallpaperId);
 
@@ -115,8 +106,6 @@ function displayWallpaper(wallpaperId) {
       );
     });
   }
-
-  console.log("Found wallpaper:", currentWallpaper);
 
   if (!currentWallpaper) {
     showError("Wallpaper not found");
@@ -192,7 +181,6 @@ async function trackView(wallpaperId) {
         .from("wallpaper_stats")
         .insert({ id: wallpaperId, views: 1, downloads: 0 });
     }
-    console.log("👁 View tracked for:", wallpaperId);
   } catch (error) {
     console.error("Failed to track view:", error);
   }

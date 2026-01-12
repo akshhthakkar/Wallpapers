@@ -476,7 +476,7 @@ function renderCollection(category, items) {
     anime: "Anime",
     marvel: "Marvel",
     movies: "Movies & TV Shows",
-    cars: "Cars & Supercars",
+    cars: "Car Culture",
     transformers: "Transformers",
     random: "Random",
   };
