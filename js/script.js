@@ -1,5 +1,7 @@
 // REGISTER GSAP PLUGINS
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+if (typeof gsap !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+}
 
 // NAVIGATION SCROLL
 const nav = document.getElementById("mainNav");
@@ -12,9 +14,12 @@ window.addEventListener("scroll", () => {
 });
 
 // HERO ANIMATIONS
-const heroTimeline = gsap.timeline();
+let heroTimeline;
+if (typeof gsap !== "undefined") {
+  heroTimeline = gsap.timeline();
+}
 
-if (document.querySelector(".hero-title")) {
+if (document.querySelector(".hero-title") && heroTimeline) {
   heroTimeline
     .from(".hero-badge", {
       y: -50,
@@ -84,22 +89,24 @@ function updateStats() {
 updateStats();
 
 // COLLECTION ANIMATIONS
-gsap.utils.toArray(".collection-card").forEach((card, i) => {
-  gsap.from(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 80%",
-      toggleActions: "play none none reverse",
-    },
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out",
+if (typeof gsap !== "undefined") {
+  gsap.utils.toArray(".collection-card").forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
   });
-});
+}
 
 // ABOUT SECTION ANIMATION
-if (document.querySelector(".about-content")) {
+if (document.querySelector(".about-content") && typeof gsap !== "undefined") {
   gsap.from(".about-content", {
     scrollTrigger: {
       trigger: ".about-content",
@@ -119,11 +126,16 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const href = this.getAttribute("href");
     if (href !== "#" && href !== "") {
       e.preventDefault();
-      gsap.to(window, {
-        duration: 0.6,
-        scrollTo: { y: href, offsetY: 80 },
-        ease: "power2.inOut",
-      });
+      if (typeof gsap !== "undefined") {
+        gsap.to(window, {
+          duration: 0.6,
+          scrollTo: { y: href, offsetY: 80 },
+          ease: "power2.inOut",
+        });
+      } else {
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      }
     }
   });
 });
@@ -374,7 +386,7 @@ function initSearch() {
 
 async function loadWallpapers() {
   try {
-    const response = await fetch(`wallpapers.json?v=${Date.now()}`);
+    const response = await fetch(`wallpapers.json?v=2`);
     if (!response.ok) throw new Error("Failed to load wallpapers.json");
 
     const data = await response.json();

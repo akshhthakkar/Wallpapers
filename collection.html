@@ -250,7 +250,7 @@
 
         try {
           // Fetch Data
-          const response = await fetch("wallpapers.json?v=" + Date.now());
+          const response = await fetch("wallpapers.json?v=2");
           const data = await response.json();
           const items = data[categoryId];
 
@@ -286,7 +286,7 @@
 
         let data = {};
         try {
-          const response = await fetch("wallpapers.json?v=" + Date.now());
+          const response = await fetch("wallpapers.json?v=2");
           data = await response.json();
         } catch (e) {
           console.error("Thumbnail fetch failed", e);
