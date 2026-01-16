@@ -8,7 +8,7 @@
   <a href="https://wallpaperverse.akshthakkar.me"><strong>🔴 LIVE DEMO</strong></a>
 </p>
 
-## 👨‍💻 Not Just Another Repo...
+## 👨‍💻 Not Just Another Repo..
 
 Hi, I'm **Aksh**! 👋 As a massive wallpaper enthusiast, I've spent hours curating, organizing, and building this space. I believe a desktop background isn't just an image—it's a vibe, a mood, a statement.
 
