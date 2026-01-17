@@ -36,7 +36,7 @@ if (document.querySelector(".hero-title") && heroTimeline) {
         stagger: 0.3,
         ease: "power4.out",
       },
-      "-=0.5"
+      "-=0.5",
     )
     .from(
       ".hero-subtitle",
@@ -46,7 +46,7 @@ if (document.querySelector(".hero-title") && heroTimeline) {
         duration: 0.8,
         ease: "power3.out",
       },
-      "-=0.5"
+      "-=0.5",
     );
 }
 /* Animations removed to force visibility
@@ -298,7 +298,7 @@ function initSearch() {
     // Re-query cards every time to ensure we get any dynamically added ones,
     // though for now they are static blocks.
     const allCollectionCards = document.querySelectorAll(
-      ".collection-card:not(#search-results-card)"
+      ".collection-card:not(#search-results-card)",
     );
 
     if (query.length === 0) {
@@ -342,7 +342,7 @@ function initSearch() {
 
       // Check if EVERY search token is present in either title or category
       return searchTokens.every(
-        (token) => titleLower.includes(token) || categoryLower.includes(token)
+        (token) => titleLower.includes(token) || categoryLower.includes(token),
       );
     });
 
@@ -362,12 +362,12 @@ function initSearch() {
           openLightbox(
             item.optimized + "?v=" + Date.now(),
             item.title,
-            item.original
+            item.original,
           );
         gridItem.innerHTML = `
           <img src="${item.optimized}?v=${Date.now()}" alt="${
-          item.title
-        }" loading="lazy" />
+            item.title
+          }" loading="lazy" />
           <div class="item-overlay">
             <button class="btn-quick-download" onclick="event.stopPropagation(); downloadImage('${
               item.original
@@ -405,7 +405,7 @@ async function loadWallpapers() {
     try {
       const totalWallpapers = Object.values(data).reduce(
         (acc, curr) => acc + (Array.isArray(curr) ? curr.length : 0),
-        0
+        0,
       );
       // Round down to nearest 5 (e.g., 57 -> 55, 62 -> 60)
       const roundedCount = Math.floor(totalWallpapers / 5) * 5;
@@ -454,7 +454,7 @@ async function loadWallpapers() {
 
 function renderCollection(category, items) {
   const card = document.querySelector(
-    `.collection-card[data-collection="${category}"]`
+    `.collection-card[data-collection="${category}"]`,
   );
   if (!card) return;
 
@@ -505,7 +505,20 @@ function renderCollection(category, items) {
 
   const categoryName = categoryNames[category] || category;
 
-  items.forEach((item) => {
+  // Fisher-Yates Shuffle
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  // Shuffle items for random display order on every load
+  // Create a copy to avoid mutating the original data source if used elsewhere
+  const shuffledItems = [...items];
+  shuffleArray(shuffledItems);
+
+  shuffledItems.forEach((item) => {
     // Generate URL-friendly ID from filename
     const wallpaperId = item.file
       .replace(/\.(jpg|jpeg|png|webp)$/i, "")
@@ -525,7 +538,7 @@ function renderCollection(category, items) {
       openLightbox(
         item.optimized + "?v=" + Date.now(),
         item.title,
-        item.original
+        item.original,
       );
 
     // Use optimized images for better quality display
@@ -537,8 +550,8 @@ function renderCollection(category, items) {
         <button class="btn-fullscreen-preview" aria-label="View ${
           item.title
         } in fullscreen" onclick="event.stopPropagation(); openFullscreenPreview('${
-      item.optimized
-    }?v=${Date.now()}', '${item.title}')">
+          item.optimized
+        }?v=${Date.now()}', '${item.title}')">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M16 21h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -546,8 +559,8 @@ function renderCollection(category, items) {
         <button class="btn-quick-download" aria-label="Download ${
           item.title
         } wallpaper" onclick="event.stopPropagation(); downloadImage('${
-      item.original
-    }')">
+          item.original
+        }')">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -576,7 +589,7 @@ async function loadWallpaperStats(items) {
       item.file
         .replace(/\.(jpg|jpeg|png|webp)$/i, "")
         .replace(/[_\s]+/g, "-")
-        .toLowerCase()
+        .toLowerCase(),
     );
 
     // Fetch stats for all these wallpapers
@@ -588,7 +601,7 @@ async function loadWallpaperStats(items) {
     if (data) {
       data.forEach((stat) => {
         const badge = document.querySelector(
-          `.download-count-badge[data-id="${stat.id}"]`
+          `.download-count-badge[data-id="${stat.id}"]`,
         );
         if (badge && stat.downloads > 0) {
           badge.textContent = `⬇ ${formatDownloadCount(stat.downloads)}`;
@@ -908,7 +921,7 @@ console.log("⚡ WALLPAPERVERSE ⚡");
 // SCROLL REVEAL ANIMATIONS
 const initScrollReveal = () => {
   const revealElements = document.querySelectorAll(
-    ".grid-item, .collection-title, .collection-desc, .section-title, .btn-download-all"
+    ".grid-item, .collection-title, .collection-desc, .section-title, .btn-download-all",
   );
 
   revealElements.forEach((el) => el.classList.add("reveal"));
@@ -926,7 +939,7 @@ const initScrollReveal = () => {
     {
       threshold: 0.1,
       rootMargin: "0px 0px -50px 0px",
-    }
+    },
   );
 
   revealElements.forEach((el) => revealObserver.observe(el));
