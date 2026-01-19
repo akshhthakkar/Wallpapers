@@ -241,6 +241,20 @@
   ],
   "cars": [
     {
+      "file": "bmw-dark-silhouette.jpg",
+      "title": "Bmw Dark Silhouette",
+      "thumbnail": "thumbnails/cars/bmw-dark-silhouette.webp",
+      "optimized": "optimized/cars/bmw-dark-silhouette.webp",
+      "original": "wallpapers/cars/bmw-dark-silhouette.jpg"
+    },
+    {
+      "file": "bmw-pure-performance.jpg",
+      "title": "Bmw Pure Performance",
+      "thumbnail": "thumbnails/cars/bmw-pure-performance.webp",
+      "optimized": "optimized/cars/bmw-pure-performance.webp",
+      "original": "wallpapers/cars/bmw-pure-performance.jpg"
+    },
+    {
       "file": "cars-porsche-black-red.jpeg",
       "title": "Cars Porsche Black Red",
       "thumbnail": "thumbnails/cars/cars-porsche-black-red.webp",
@@ -260,6 +274,20 @@
       "thumbnail": "thumbnails/cars/disney-lightning-mcqueen-cars.webp",
       "optimized": "optimized/cars/disney-lightning-mcqueen-cars.webp",
       "original": "wallpapers/cars/disney-lightning-mcqueen-cars.jpeg"
+    },
+    {
+      "file": "dodge-hellcat-unleashed.jpg",
+      "title": "Dodge Hellcat Unleashed",
+      "thumbnail": "thumbnails/cars/dodge-hellcat-unleashed.webp",
+      "optimized": "optimized/cars/dodge-hellcat-unleashed.webp",
+      "original": "wallpapers/cars/dodge-hellcat-unleashed.jpg"
+    },
+    {
+      "file": "dodge-muscle-rebellion.jpg",
+      "title": "Dodge Muscle Rebellion",
+      "thumbnail": "thumbnails/cars/dodge-muscle-rebellion.webp",
+      "optimized": "optimized/cars/dodge-muscle-rebellion.webp",
+      "original": "wallpapers/cars/dodge-muscle-rebellion.jpg"
     },
     {
       "file": "dodge-punisher.jpeg",
@@ -288,6 +316,20 @@
       "thumbnail": "thumbnails/cars/lamborghini-miura-wallpaper.webp",
       "optimized": "optimized/cars/lamborghini-miura-wallpaper.webp",
       "original": "wallpapers/cars/lamborghini-miura-wallpaper.jpg"
+    },
+    {
+      "file": "lightning-mcqueen-redline.jpg",
+      "title": "Lightning Mcqueen Redline",
+      "thumbnail": "thumbnails/cars/lightning-mcqueen-redline.webp",
+      "optimized": "optimized/cars/lightning-mcqueen-redline.webp",
+      "original": "wallpapers/cars/lightning-mcqueen-redline.jpg"
+    },
+    {
+      "file": "lightning-mcqueen-speed-legend.jpg",
+      "title": "Lightning Mcqueen Speed Legend",
+      "thumbnail": "thumbnails/cars/lightning-mcqueen-speed-legend.webp",
+      "optimized": "optimized/cars/lightning-mcqueen-speed-legend.webp",
+      "original": "wallpapers/cars/lightning-mcqueen-speed-legend.jpg"
     },
     {
       "file": "znxad3yqyznsuxd19ol2.jpeg",
@@ -425,6 +467,34 @@
       "thumbnail": "thumbnails/football/football-leo-messi-fifa-wc.webp",
       "optimized": "optimized/football/football-leo-messi-fifa-wc.webp",
       "original": "wallpapers/football/football-leo-messi-fifa-wc.jpg"
+    },
+    {
+      "file": "football-mess-from-rosario-to-glory.jpg",
+      "title": "Mess From Rosario To Glory",
+      "thumbnail": "thumbnails/football/football-mess-from-rosario-to-glory.webp",
+      "optimized": "optimized/football/football-mess-from-rosario-to-glory.webp",
+      "original": "wallpapers/football/football-mess-from-rosario-to-glory.jpg"
+    },
+    {
+      "file": "football-messi-number-10.jpg",
+      "title": "Messi Number 10",
+      "thumbnail": "thumbnails/football/football-messi-number-10.webp",
+      "optimized": "optimized/football/football-messi-number-10.webp",
+      "original": "wallpapers/football/football-messi-number-10.jpg"
+    },
+    {
+      "file": "football-messi-the-greatest-ever.jpg",
+      "title": "Messi The Greatest Ever",
+      "thumbnail": "thumbnails/football/football-messi-the-greatest-ever.webp",
+      "optimized": "optimized/football/football-messi-the-greatest-ever.webp",
+      "original": "wallpapers/football/football-messi-the-greatest-ever.jpg"
+    },
+    {
+      "file": "football-messi-unstoppable.jpg",
+      "title": "Messi Unstoppable",
+      "thumbnail": "thumbnails/football/football-messi-unstoppable.webp",
+      "optimized": "optimized/football/football-messi-unstoppable.webp",
+      "original": "wallpapers/football/football-messi-unstoppable.jpg"
     },
     {
       "file": "football-messi-worldcup.jpeg",
