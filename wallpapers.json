@@ -57,6 +57,13 @@
       "original": "wallpapers/anime/anime-hatake-kakashi.png"
     },
     {
+      "file": "anime-itachi-black-flame-king.jpg",
+      "title": "Anime Itachi Black Flame King",
+      "thumbnail": "thumbnails/anime/anime-itachi-black-flame-king.webp",
+      "optimized": "optimized/anime/anime-itachi-black-flame-king.webp",
+      "original": "wallpapers/anime/anime-itachi-black-flame-king.jpg"
+    },
+    {
       "file": "anime-jjk-cursed-energy-rising.jpg",
       "title": "Anime Jjk Cursed Energy Rising",
       "thumbnail": "thumbnails/anime/anime-jjk-cursed-energy-rising.webp",
@@ -127,11 +134,25 @@
       "original": "wallpapers/anime/anime-jjk-yuta.jpg"
     },
     {
+      "file": "anime-madara-six-paths.png",
+      "title": "Anime Madara Six Paths",
+      "thumbnail": "thumbnails/anime/anime-madara-six-paths.webp",
+      "optimized": "optimized/anime/anime-madara-six-paths.webp",
+      "original": "wallpapers/anime/anime-madara-six-paths.png"
+    },
+    {
       "file": "anime-naruto-sasuke-final-fight.jpg",
       "title": "Anime Naruto Sasuke Final Fight",
       "thumbnail": "thumbnails/anime/anime-naruto-sasuke-final-fight.webp",
       "optimized": "optimized/anime/anime-naruto-sasuke-final-fight.webp",
       "original": "wallpapers/anime/anime-naruto-sasuke-final-fight.jpg"
+    },
+    {
+      "file": "anime-sasuke-cursed-destiny.jpg",
+      "title": "Anime Sasuke Cursed Destiny",
+      "thumbnail": "thumbnails/anime/anime-sasuke-cursed-destiny.webp",
+      "optimized": "optimized/anime/anime-sasuke-cursed-destiny.webp",
+      "original": "wallpapers/anime/anime-sasuke-cursed-destiny.jpg"
     },
     {
       "file": "chainsawman-denji.jpg",
@@ -318,6 +339,13 @@
       "original": "wallpapers/cars/lamborghini-miura-wallpaper.jpg"
     },
     {
+      "file": "lightning-mcqueen-midnight-race.jpg",
+      "title": "Lightning Mcqueen Midnight Race",
+      "thumbnail": "thumbnails/cars/lightning-mcqueen-midnight-race.webp",
+      "optimized": "optimized/cars/lightning-mcqueen-midnight-race.webp",
+      "original": "wallpapers/cars/lightning-mcqueen-midnight-race.jpg"
+    },
+    {
       "file": "lightning-mcqueen-redline.jpg",
       "title": "Lightning Mcqueen Redline",
       "thumbnail": "thumbnails/cars/lightning-mcqueen-redline.webp",
@@ -346,6 +374,13 @@
       "thumbnail": "thumbnails/dc/dc-batman-batmobile.webp",
       "optimized": "optimized/dc/dc-batman-batmobile.webp",
       "original": "wallpapers/dc/dc-batman-batmobile.jpg"
+    },
+    {
+      "file": "dc-batman-dark-knight.jpg",
+      "title": "Batman Dark Knight",
+      "thumbnail": "thumbnails/dc/dc-batman-dark-knight.webp",
+      "optimized": "optimized/dc/dc-batman-dark-knight.webp",
+      "original": "wallpapers/dc/dc-batman-dark-knight.jpg"
     },
     {
       "file": "dc-batman-minimal-dark.jpg",
@@ -469,6 +504,13 @@
       "original": "wallpapers/football/football-leo-messi-fifa-wc.jpg"
     },
     {
+      "file": "football-maldini-ac-milan-legend.jpg",
+      "title": "Maldini Ac Milan Legend",
+      "thumbnail": "thumbnails/football/football-maldini-ac-milan-legend.webp",
+      "optimized": "optimized/football/football-maldini-ac-milan-legend.webp",
+      "original": "wallpapers/football/football-maldini-ac-milan-legend.jpg"
+    },
+    {
       "file": "football-mess-from-rosario-to-glory.jpg",
       "title": "Mess From Rosario To Glory",
       "thumbnail": "thumbnails/football/football-mess-from-rosario-to-glory.webp",
@@ -523,6 +565,13 @@
       "thumbnail": "thumbnails/football/football-neymar-jr.webp",
       "optimized": "optimized/football/football-neymar-jr.webp",
       "original": "wallpapers/football/football-neymar-jr.jpeg"
+    },
+    {
+      "file": "football-ronaldo-calma.jpg",
+      "title": "Ronaldo Calma",
+      "thumbnail": "thumbnails/football/football-ronaldo-calma.webp",
+      "optimized": "optimized/football/football-ronaldo-calma.webp",
+      "original": "wallpapers/football/football-ronaldo-calma.jpg"
     }
   ],
   "marvel": [
@@ -730,6 +779,13 @@
       "original": "wallpapers/marvel/marvel-thor-god-of-thunder-wallpaper.jpg"
     },
     {
+      "file": "marvel-thor-lightning-awakens.jpg",
+      "title": "Thor Lightning Awakens",
+      "thumbnail": "thumbnails/marvel/marvel-thor-lightning-awakens.webp",
+      "optimized": "optimized/marvel/marvel-thor-lightning-awakens.webp",
+      "original": "wallpapers/marvel/marvel-thor-lightning-awakens.jpg"
+    },
+    {
       "file": "marvel-thor-thunder-stormbreaker.jpg",
       "title": "Thor Thunder Stormbreaker",
       "thumbnail": "thumbnails/marvel/marvel-thor-thunder-stormbreaker.webp",
@@ -795,11 +851,18 @@
       "original": "wallpapers/movies/how-i-met-your-mother-surprised.jpg"
     },
     {
-      "file": "move-john-wick-red-bg.jpg",
-      "title": "Move John Wick Red Bg",
-      "thumbnail": "thumbnails/movies/move-john-wick-red-bg.webp",
-      "optimized": "optimized/movies/move-john-wick-red-bg.webp",
-      "original": "wallpapers/movies/move-john-wick-red-bg.jpg"
+      "file": "john-wick-baba-yaga.jpg",
+      "title": "John Wick Baba Yaga",
+      "thumbnail": "thumbnails/movies/john-wick-baba-yaga.webp",
+      "optimized": "optimized/movies/john-wick-baba-yaga.webp",
+      "original": "wallpapers/movies/john-wick-baba-yaga.jpg"
+    },
+    {
+      "file": "john-wick-excommunicado.jpg",
+      "title": "John Wick Excommunicado",
+      "thumbnail": "thumbnails/movies/john-wick-excommunicado.webp",
+      "optimized": "optimized/movies/john-wick-excommunicado.webp",
+      "original": "wallpapers/movies/john-wick-excommunicado.jpg"
     },
     {
       "file": "movie-fight-club.jpg",
@@ -814,6 +877,13 @@
       "thumbnail": "thumbnails/movies/movie-interstellar-space-exploration-wallpaper.webp",
       "optimized": "optimized/movies/movie-interstellar-space-exploration-wallpaper.webp",
       "original": "wallpapers/movies/movie-interstellar-space-exploration-wallpaper.jpg"
+    },
+    {
+      "file": "movie-john-wick-red-bg.jpg",
+      "title": "John Wick Red Bg",
+      "thumbnail": "thumbnails/movies/movie-john-wick-red-bg.webp",
+      "optimized": "optimized/movies/movie-john-wick-red-bg.webp",
+      "original": "wallpapers/movies/movie-john-wick-red-bg.jpg"
     },
     {
       "file": "movie-top-gun-maverick.jpg",
@@ -919,6 +989,13 @@
       "thumbnail": "thumbnails/movies/tv-show-stranger-things-cast-wallpaper.webp",
       "optimized": "optimized/movies/tv-show-stranger-things-cast-wallpaper.webp",
       "original": "wallpapers/movies/tv-show-stranger-things-cast-wallpaper.jpg"
+    },
+    {
+      "file": "tv-show-stranger-things-dark-dimension.jpg",
+      "title": "Stranger Things Dark Dimension",
+      "thumbnail": "thumbnails/movies/tv-show-stranger-things-dark-dimension.webp",
+      "optimized": "optimized/movies/tv-show-stranger-things-dark-dimension.webp",
+      "original": "wallpapers/movies/tv-show-stranger-things-dark-dimension.jpg"
     },
     {
       "file": "tv-show-stranger-things-eleven.jpg",
