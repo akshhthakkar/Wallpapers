@@ -611,6 +611,13 @@
       "original": "wallpapers/marvel/marvel-black-widow.jpeg"
     },
     {
+      "file": "marvel-captain-america-midnight-shield.jpg",
+      "title": "Captain America Midnight Shield",
+      "thumbnail": "thumbnails/marvel/marvel-captain-america-midnight-shield.webp",
+      "optimized": "optimized/marvel/marvel-captain-america-midnight-shield.webp",
+      "original": "wallpapers/marvel/marvel-captain-america-midnight-shield.jpg"
+    },
+    {
       "file": "marvel-deadpool-double-swords.jpg",
       "title": "Deadpool Double Swords",
       "thumbnail": "thumbnails/marvel/marvel-deadpool-double-swords.webp",
