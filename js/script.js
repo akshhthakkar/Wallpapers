@@ -205,14 +205,26 @@ function initAutoScroll() {
     let scrollSpeed = 1.8; // Faster scroll
     let isPaused = false;
     let autoScrollReq;
+    let cachedScrollWidth = 0;
+    let currentScrollPos = 0;
+
+    // Cache scrollWidth once after layout settles (reduces reflow)
+    requestAnimationFrame(() => {
+      cachedScrollWidth = grid.scrollWidth;
+      currentScrollPos = grid.scrollLeft;
+    });
 
     function autoScroll() {
       if (shouldAutoScroll && !isPaused) {
-        grid.scrollLeft += scrollSpeed;
+        currentScrollPos += scrollSpeed;
         // Fix loop reset logic to be seamless
-        if (grid.scrollLeft >= grid.scrollWidth / 2) {
-          grid.scrollLeft = 1; // Slight offset to prevent 0-lock
+        if (
+          cachedScrollWidth > 0 &&
+          currentScrollPos >= cachedScrollWidth / 2
+        ) {
+          currentScrollPos = 1; // Slight offset to prevent 0-lock
         }
+        grid.scrollLeft = currentScrollPos;
       }
       autoScrollReq = requestAnimationFrame(autoScroll);
     }

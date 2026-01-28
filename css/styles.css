@@ -133,23 +133,33 @@ body {
 
 @keyframes img-continuous-glitch {
   0% {
-    box-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    box-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-2px, 1px) scale(1.05);
   }
   25% {
-    box-shadow: -2px 0 var(--color-secondary), 2px 0 var(--color-primary);
+    box-shadow:
+      -2px 0 var(--color-secondary),
+      2px 0 var(--color-primary);
     transform: translate(2px, -1px) scale(1.05);
   }
   50% {
-    box-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    box-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-1px, 2px) scale(1.05);
   }
   75% {
-    box-shadow: -2px 0 var(--color-secondary), 2px 0 var(--color-primary);
+    box-shadow:
+      -2px 0 var(--color-secondary),
+      2px 0 var(--color-primary);
     transform: translate(1px, -2px) scale(1.05);
   }
   100% {
-    box-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    box-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-2px, 1px) scale(1.05);
   }
 }
@@ -337,7 +347,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at 20% 50%,
       rgba(0, 217, 255, 0.1) 0%,
       transparent 50%
@@ -384,11 +395,14 @@ body {
   letter-spacing: 0.03em;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  /* Prevent CLS by reserving space for the title */
+  min-height: 1.8em;
 }
 
 .title-line {
   display: block;
-  text-shadow: 4px 4px 0 var(--color-primary),
+  text-shadow:
+    4px 4px 0 var(--color-primary),
     -2px -2px 0 var(--color-secondary);
 }
 
@@ -1120,7 +1134,8 @@ body {
   transform: translateY(20px);
   transition: all 0.3s ease;
   z-index: 999;
-  box-shadow: 2px 0px 0px var(--color-primary),
+  box-shadow:
+    2px 0px 0px var(--color-primary),
     4px 0px 0px var(--color-secondary);
 }
 
@@ -1230,19 +1245,27 @@ body {
     transform: none;
   }
   1% {
-    text-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    text-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-2px, 1px);
   }
   2% {
-    text-shadow: -2px 0 var(--color-secondary), 2px 0 var(--color-primary);
+    text-shadow:
+      -2px 0 var(--color-secondary),
+      2px 0 var(--color-primary);
     transform: translate(2px, -1px);
   }
   3% {
-    text-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    text-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-1px, 2px);
   }
   4% {
-    text-shadow: -2px 0 var(--color-secondary), 2px 0 var(--color-primary);
+    text-shadow:
+      -2px 0 var(--color-secondary),
+      2px 0 var(--color-primary);
     transform: translate(1px, -2px);
   }
   5% {
@@ -1257,23 +1280,33 @@ body {
 
 @keyframes continuous-glitch {
   0% {
-    text-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    text-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-2px, 1px);
   }
   25% {
-    text-shadow: -2px 0 var(--color-secondary), 2px 0 var(--color-primary);
+    text-shadow:
+      -2px 0 var(--color-secondary),
+      2px 0 var(--color-primary);
     transform: translate(2px, -1px);
   }
   50% {
-    text-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    text-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-1px, 2px);
   }
   75% {
-    text-shadow: -2px 0 var(--color-secondary), 2px 0 var(--color-primary);
+    text-shadow:
+      -2px 0 var(--color-secondary),
+      2px 0 var(--color-primary);
     transform: translate(1px, -2px);
   }
   100% {
-    text-shadow: 2px 0 var(--color-secondary), -2px 0 var(--color-primary);
+    text-shadow:
+      2px 0 var(--color-secondary),
+      -2px 0 var(--color-primary);
     transform: translate(-2px, 1px);
   }
 }
@@ -1489,7 +1522,8 @@ body {
   color: var(--color-bg);
   letter-spacing: 0.08em;
   line-height: 1;
-  box-shadow: 3px 0px 0px var(--color-primary),
+  box-shadow:
+    3px 0px 0px var(--color-primary),
     6px 0px 0px var(--color-secondary);
   outline: transparent;
   position: relative;
@@ -1531,7 +1565,8 @@ body {
     var(--color-primary) 7%,
     #ffffff 7%
   );
-  text-shadow: -3px -3px 0px var(--color-secondary),
+  text-shadow:
+    -3px -3px 0px var(--color-secondary),
     3px 3px 0px var(--color-primary);
   clip-path: var(--slice-0);
   z-index: 2;
@@ -1551,7 +1586,8 @@ body {
 
 .back-to-top:hover {
   transform: translateY(0); /* Ensure it stays in place */
-  box-shadow: 3px 0px 0px var(--color-primary),
+  box-shadow:
+    3px 0px 0px var(--color-primary),
     6px 0px 0px var(--color-secondary);
   animation: icon-glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
 }
