@@ -1,532 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Collections - WallpaperVerse</title>
-    <meta
-      name="description"
-      content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more."
-    />
-    <meta
-      name="keywords"
-      content="4k download desktop, laptop, wallpaper collections, 4k wallpaper packs, hd wallpaper collections, anime wallpapers, marvel wallpapers, movie wallpapers, car wallpapers, desktop backgrounds, laptop wallpapers"
-    />
-    <link
-      rel="canonical"
-      href="https://wallpaperverse.akshthakkar.me/collection.html"
-    />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://wallpaperverse.akshthakkar.me/collection.html"
-    />
-    <meta property="og:title" content="Collections - WallpaperVerse" />
-    <meta
-      property="og:description"
-      content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more."
-    />
-    <meta
-      property="og:image"
-      content="https://wallpaperverse.akshthakkar.me/wallpapers/anime/demon-slayer-tanjiro-kamado-wallpaper.jpg"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Collections - WallpaperVerse</title>
+  <meta name="description"
+    content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more." />
+  <meta name="keywords"
+    content="4k download desktop, laptop, wallpaper collections, 4k wallpaper packs, hd wallpaper collections, anime wallpapers, marvel wallpapers, movie wallpapers, car wallpapers, desktop backgrounds, laptop wallpapers" />
+  <link rel="canonical" href="https://wallpaperverse.akshthakkar.me/collection" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:url"
-      content="https://wallpaperverse.akshthakkar.me/collection.html"
-    />
-    <meta name="twitter:title" content="Collections - WallpaperVerse" />
-    <meta
-      name="twitter:description"
-      content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more."
-    />
-    <meta
-      name="twitter:image"
-      content="https://wallpaperverse.akshthakkar.me/wallpapers/anime/demon-slayer-tanjiro-kamado-wallpaper.jpg"
-    />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wallpaperverse.akshthakkar.me/collection" />
+  <meta property="og:title" content="Collections - WallpaperVerse" />
+  <meta property="og:description"
+    content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more." />
+  <meta property="og:image"
+    content="https://wallpaperverse.akshthakkar.me/wallpapers/anime/demon-slayer-tanjiro-kamado-wallpaper.jpg" />
 
-    <!-- Pinterest -->
-    <meta name="p:domain_verify" content="22ad845a35488e423b894d08a8e2f4ac" />
-    <meta name="pinterest-rich-pin" content="true" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://wallpaperverse.akshthakkar.me/collection" />
+  <meta name="twitter:title" content="Collections - WallpaperVerse" />
+  <meta name="twitter:description"
+    content="Browse our entire collection of high-quality 4K and HD wallpapers. Filter by Anime, Marvel, Movies, Cars, and more." />
+  <meta name="twitter:image"
+    content="https://wallpaperverse.akshthakkar.me/wallpapers/anime/demon-slayer-tanjiro-kamado-wallpaper.jpg" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800;900&family=Unbounded:wght@200..900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Preload critical data -->
-    <link rel="preload" href="wallpapers.json?v=2" as="fetch" crossorigin />
+  <!-- Pinterest -->
+  <meta name="p:domain_verify" content="22ad845a35488e423b894d08a8e2f4ac" />
+  <meta name="pinterest-rich-pin" content="true" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/wallpaper.css" />
-    <style>
-      .collection-hero {
-        padding: 8rem 2rem 4rem;
-        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-        text-align: center;
-      }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800;900&family=Unbounded:wght@200..900&display=swap"
+    rel="stylesheet" />
+  <!-- Preload critical data -->
+  <link rel="preload" href="wallpapers.json?v=2" as="fetch" crossorigin />
 
-      .collection-title {
-        font-family: var(--font-display);
-        font-size: 4rem;
-        color: var(--color-primary);
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-      }
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/wallpaper.css" />
+  <style>
+    .collection-hero {
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+      text-align: center;
+    }
 
-      .collection-grid-page {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
+    .collection-title {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
 
-      /* Reuse grid-item styles from styles.css */
+    .collection-grid-page {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-      /* Skeleton Loading Cards */
-      .skeleton-card {
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .skeleton-img {
-        height: 250px;
-        background: linear-gradient(
-          90deg,
+    /* Reuse grid-item styles from styles.css */
+
+    /* Skeleton Loading Cards */
+    .skeleton-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .skeleton-img {
+      height: 250px;
+      background: linear-gradient(90deg,
           rgba(255, 255, 255, 0.05) 25%,
           rgba(255, 255, 255, 0.1) 50%,
-          rgba(255, 255, 255, 0.05) 75%
-        );
-        background-size: 200% 100%;
-        animation: shimmer 1.5s infinite;
-      }
-      .skeleton-btn {
-        height: 50px;
-        margin: 1.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 4px;
-      }
-      @keyframes shimmer {
-        0% {
-          background-position: 200% 0;
-        }
-        100% {
-          background-position: -200% 0;
-        }
-      }
-    </style>
-    <!-- No GSAP needed - instant display for performance -->
-  </head>
-  <body>
-    <div class="accent-lines"></div>
+          rgba(255, 255, 255, 0.05) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
 
-    <!-- Navigation -->
-    <nav class="nav" id="mainNav">
-      <div class="nav-container">
-        <div class="nav-left">
-          <a href="index.html" class="nav-brand-link">
-            <img
-              class="nav-avatar"
-              src="https://avatars.githubusercontent.com/u/156109288?v=4"
-              alt="Aksh Thakkar"
-            />
-            <span class="nav-brand" style="color: var(--color-primary)"
-              >WALLPAPER<span style="color: var(--color-secondary)"
-                >VERSE</span
-              ></span
-            >
-          </a>
-        </div>
-        <div class="nav-right">
-          <a href="index.html" class="nav-link">HOME</a>
-          <a href="collection.html" class="nav-link">COLLECTIONS</a>
-          <a href="submit.html" class="btn-glitch" data-text="SUBMIT">
-            <span>SUBMIT</span>
-            <div class="cta-arrow">→</div>
-          </a>
-        </div>
-      </div>
-    </nav>
+    .skeleton-btn {
+      height: 50px;
+      margin: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
 
-    <!-- Header -->
-    <header class="collection-hero">
-      <h1 class="collection-title" id="collectionTitle">SELECT CATEGORY</h1>
-      <p
-        id="collectionCount"
-        style="color: var(--color-muted); letter-spacing: 0.1em"
-      >
-        CHOOSE A COLLECTION
-      </p>
-    </header>
-
-    <!-- Main Grid -->
-    <main class="collection-grid-page" id="collectionGrid">
-      <!-- Skeleton loaders shown immediately while JS loads -->
-      <div class="skeleton-card">
-        <div class="skeleton-img"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-      <div class="skeleton-card">
-        <div class="skeleton-img"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-      <div class="skeleton-card">
-        <div class="skeleton-img"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-      <div class="skeleton-card">
-        <div class="skeleton-img"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-      <div class="skeleton-card">
-        <div class="skeleton-img"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-      <div class="skeleton-card">
-        <div class="skeleton-img"></div>
-        <div class="skeleton-btn"></div>
-      </div>
-    </main>
-
-    <!-- Supabase SDK for download stats -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase-config.js"></script>
-    <script defer src="js/script.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", async () => {
-        // Parse category from URL (Support both ?id=... and #...)
-        const params = new URLSearchParams(window.location.search);
-        let categoryId = params.get("id");
-
-        // Fallback to hash if no query param (handles #anime)
-        if (!categoryId && window.location.hash) {
-          categoryId = window.location.hash.substring(1).replace("id=", ""); // remove # and optional id=
-        }
-
-        if (categoryId) {
-          loadCategory(categoryId);
-        } else {
-          showCategoryPicker();
-        }
-      });
-
-      async function loadCategory(categoryId) {
-        // Update URL first
-        const url = new URL(window.location);
-        url.searchParams.set("id", categoryId);
-        window.history.pushState({}, "", url);
-
-        const categoryNames = {
-          anime: "Anime",
-          marvel: "Marvel",
-          dc: "DC Universe",
-          movies: "Movies & TV Shows",
-          cars: "Car Culture",
-          football: "Football",
-          transformers: "Transformers",
-          wanderlust: "Wanderlust",
-          random: "Random",
-        };
-        const displayTitle = categoryNames[categoryId] || categoryId;
-
-        // Update document title
-        document.title = `${displayTitle} Wallpapers | WallpaperVerse`;
-
-        try {
-          // Fetch Data
-          const response = await fetch("wallpapers.json?v=2");
-          const data = await response.json();
-          const items = data[categoryId];
-
-          if (!items) {
-            updateHeroUI("COLLECTION NOT FOUND", "0 WALLPAPERS");
-            document.getElementById("collectionGrid").innerHTML = "";
-            return;
-          }
-
-          // Smooth Transition for Hero
-          updateHeroUI(displayTitle, `${items.length} WALLPAPERS`);
-
-          // Render Grid
-          const grid = document.getElementById("collectionGrid");
-          grid.style.display = "grid";
-          grid.style.flexWrap = "nowrap";
-          grid.style.justifyContent = "start";
-          grid.innerHTML = "";
-          renderPageGrid(categoryId, items);
-
-          if (window.loadWallpaperStats) window.loadWallpaperStats(items);
-        } catch (error) {
-          console.error("Error:", error);
-          updateHeroUI("ERROR LOADING DATA", "PLEASE REFRESH");
-        }
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
       }
 
-      async function showCategoryPicker() {
-        updateHeroUI("SELECT CATEGORY", "CHOOSE A COLLECTION TO VIEW");
+      100% {
+        background-position: -200% 0;
+      }
+    }
+  </style>
+  <!-- No GSAP needed - instant display for performance -->
+</head>
 
+<body>
+  <div class="accent-lines"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/" class="nav-brand-link">
+          <img class="nav-avatar" src="https://avatars.githubusercontent.com/u/156109288?v=4" alt="Aksh Thakkar" />
+          <span class="nav-brand" style="color: var(--color-primary)">WALLPAPER<span
+              style="color: var(--color-secondary)">VERSE</span></span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="/" class="nav-link">HOME</a>
+        <a href="collection" class="nav-link">COLLECTIONS</a>
+        <a href="submit" class="btn-glitch" data-text="SUBMIT">
+          <span>SUBMIT</span>
+          <div class="cta-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="collection-hero">
+    <h1 class="collection-title" id="collectionTitle">SELECT CATEGORY</h1>
+    <p id="collectionCount" style="color: var(--color-muted); letter-spacing: 0.1em">
+      CHOOSE A COLLECTION
+    </p>
+  </header>
+
+  <!-- Main Grid -->
+  <main class="collection-grid-page" id="collectionGrid">
+    <!-- Skeleton loaders shown immediately while JS loads -->
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-btn"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-btn"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-btn"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-btn"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-btn"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton-img"></div>
+      <div class="skeleton-btn"></div>
+    </div>
+  </main>
+
+  <!-- Supabase SDK for download stats -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script defer src="js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Parse category from URL (Support both ?id=... and #...)
+      const params = new URLSearchParams(window.location.search);
+      let categoryId = params.get("id");
+
+      // Fallback to hash if no query param (handles #anime)
+      if (!categoryId && window.location.hash) {
+        categoryId = window.location.hash.substring(1).replace("id=", ""); // remove # and optional id=
+      }
+
+      if (categoryId) {
+        loadCategory(categoryId);
+      } else {
+        showCategoryPicker();
+      }
+    });
+
+    async function loadCategory(categoryId) {
+      // Update URL first
+      const url = new URL(window.location);
+      url.searchParams.set("id", categoryId);
+      window.history.pushState({}, "", url);
+
+      const categoryNames = {
+        anime: "Anime",
+        marvel: "Marvel",
+        dc: "DC Universe",
+        movies: "Movies & TV Shows",
+        cars: "Car Culture",
+        football: "Football",
+        transformers: "Transformers",
+        wanderlust: "Wanderlust",
+        random: "Random",
+      };
+      const displayTitle = categoryNames[categoryId] || categoryId;
+
+      // Update document title
+      document.title = `${displayTitle} Wallpapers | WallpaperVerse`;
+
+      try {
+        // Fetch Data
+        const response = await fetch("wallpapers.json?v=2");
+        const data = await response.json();
+        const items = data[categoryId];
+
+        if (!items) {
+          updateHeroUI("COLLECTION NOT FOUND", "0 WALLPAPERS");
+          document.getElementById("collectionGrid").innerHTML = "";
+          return;
+        }
+
+        // Smooth Transition for Hero
+        updateHeroUI(displayTitle, `${items.length} WALLPAPERS`);
+
+        // Render Grid
         const grid = document.getElementById("collectionGrid");
+        grid.style.display = "grid";
+        grid.style.flexWrap = "nowrap";
+        grid.style.justifyContent = "start";
         grid.innerHTML = "";
+        renderPageGrid(categoryId, items);
 
-        let data = {};
-        try {
-          const response = await fetch("wallpapers.json?v=2");
-          data = await response.json();
-        } catch (e) {
-          console.error("Thumbnail fetch failed", e);
+        if (window.loadWallpaperStats) window.loadWallpaperStats(items);
+      } catch (error) {
+        console.error("Error:", error);
+        updateHeroUI("ERROR LOADING DATA", "PLEASE REFRESH");
+      }
+    }
+
+    async function showCategoryPicker() {
+      updateHeroUI("SELECT CATEGORY", "CHOOSE A COLLECTION TO VIEW");
+
+      const grid = document.getElementById("collectionGrid");
+      grid.innerHTML = "";
+
+      let data = {};
+      try {
+        const response = await fetch("wallpapers.json?v=2");
+        data = await response.json();
+      } catch (e) {
+        console.error("Thumbnail fetch failed", e);
+      }
+
+      grid.style.display = "grid";
+      grid.style.gridTemplateColumns =
+        "repeat(auto-fill, minmax(300px, 1fr))";
+      grid.style.gap = "2rem";
+      grid.style.justifyContent = "center";
+
+      const categories = [
+        { id: "anime", name: "Anime" },
+        { id: "marvel", name: "Marvel Universe" },
+        { id: "dc", name: "DC Universe" },
+        { id: "movies", name: "Movies & TV" },
+        { id: "cars", name: "Car Culture" },
+        { id: "football", name: "Football" },
+        { id: "transformers", name: "Transformers" },
+        { id: "wanderlust", name: "Wanderlust" },
+        { id: "random", name: "Random" },
+      ];
+
+      categories.forEach((cat) => {
+        // Prepare collage images (up to 4, random) - use tiny thumbnails for speed
+        let images = [
+          "https://placehold.co/400x225/1a1a1a/FFF?text=" +
+          cat.name.toUpperCase(),
+        ];
+        if (data[cat.id] && data[cat.id].length > 0) {
+          // Shuffle and pick 4, use thumbnails folder for tiny fast images
+          images = [...data[cat.id]]
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 4)
+            .map(
+              (item) =>
+                item.thumbnail ||
+                item.optimized.replace("optimized/", "thumbnails/")
+            );
         }
 
-        grid.style.display = "grid";
-        grid.style.gridTemplateColumns =
-          "repeat(auto-fill, minmax(300px, 1fr))";
-        grid.style.gap = "2rem";
-        grid.style.justifyContent = "center";
+        const card = document.createElement("div");
+        card.className = "category-card";
+        card.style.background = "rgba(255,255,255,0.03)";
+        card.style.borderRadius = "16px";
+        card.style.overflow = "hidden";
+        card.style.border = "1px solid rgba(255,255,255,0.1)";
+        card.style.transition = "transform 0.3s ease, border-color 0.3s ease";
+        card.style.cursor = "pointer";
 
-        const categories = [
-          { id: "anime", name: "Anime" },
-          { id: "marvel", name: "Marvel Universe" },
-          { id: "dc", name: "DC Universe" },
-          { id: "movies", name: "Movies & TV" },
-          { id: "cars", name: "Car Culture" },
-          { id: "football", name: "Football" },
-          { id: "transformers", name: "Transformers" },
-          { id: "wanderlust", name: "Wanderlust" },
-          { id: "random", name: "Random" },
-        ];
+        // Hover effects
+        card.onmouseenter = () => {
+          card.style.transform = "translateY(-5px)";
+          card.style.borderColor = "var(--color-secondary)";
+        };
+        card.onmouseleave = () => {
+          card.style.transform = "translateY(0)";
+          card.style.borderColor = "rgba(255,255,255,0.1)";
+        };
 
-        categories.forEach((cat) => {
-          // Prepare collage images (up to 4, random) - use tiny thumbnails for speed
-          let images = [
-            "https://placehold.co/400x225/1a1a1a/FFF?text=" +
-              cat.name.toUpperCase(),
-          ];
-          if (data[cat.id] && data[cat.id].length > 0) {
-            // Shuffle and pick 4, use thumbnails folder for tiny fast images
-            images = [...data[cat.id]]
-              .sort(() => 0.5 - Math.random())
-              .slice(0, 4)
-              .map(
-                (item) =>
-                  item.thumbnail ||
-                  item.optimized.replace("optimized/", "thumbnails/")
-              );
+        const imgDiv = document.createElement("div");
+        imgDiv.style.height = "250px";
+        imgDiv.style.width = "100%";
+        imgDiv.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
+
+        // CSS Grid for Collage
+        imgDiv.style.display = "grid";
+        if (images.length === 1) imgDiv.style.gridTemplateColumns = "1fr";
+        else imgDiv.style.gridTemplateColumns = "1fr 1fr";
+        imgDiv.style.gridTemplateRows = "1fr 1fr";
+
+        images.forEach((url, i) => {
+          const subImg = document.createElement("img");
+          subImg.src = url;
+          subImg.alt = `${cat.name} wallpaper sample`;
+          subImg.loading = "lazy"; // Critical for performance
+          subImg.style.width = "100%";
+          subImg.style.height = "100%";
+          subImg.style.objectFit = "cover";
+          subImg.style.display = "block";
+
+          // Spanning logic for fewer than 4 images
+          if (images.length === 1) {
+            subImg.style.gridRow = "1 / -1";
+            subImg.style.gridColumn = "1 / -1";
+          }
+          if (images.length === 2) {
+            subImg.style.gridRow = "1 / -1"; // Full height columns
+          }
+          if (images.length === 3) {
+            // First image takes left half (full height)
+            if (i === 0) subImg.style.gridRow = "1 / -1";
           }
 
-          const card = document.createElement("div");
-          card.className = "category-card";
-          card.style.background = "rgba(255,255,255,0.03)";
-          card.style.borderRadius = "16px";
-          card.style.overflow = "hidden";
-          card.style.border = "1px solid rgba(255,255,255,0.1)";
-          card.style.transition = "transform 0.3s ease, border-color 0.3s ease";
-          card.style.cursor = "pointer";
-
-          // Hover effects
-          card.onmouseenter = () => {
-            card.style.transform = "translateY(-5px)";
-            card.style.borderColor = "var(--color-secondary)";
-          };
-          card.onmouseleave = () => {
-            card.style.transform = "translateY(0)";
-            card.style.borderColor = "rgba(255,255,255,0.1)";
-          };
-
-          const imgDiv = document.createElement("div");
-          imgDiv.style.height = "250px";
-          imgDiv.style.width = "100%";
-          imgDiv.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
-
-          // CSS Grid for Collage
-          imgDiv.style.display = "grid";
-          if (images.length === 1) imgDiv.style.gridTemplateColumns = "1fr";
-          else imgDiv.style.gridTemplateColumns = "1fr 1fr";
-          imgDiv.style.gridTemplateRows = "1fr 1fr";
-
-          images.forEach((url, i) => {
-            const subImg = document.createElement("img");
-            subImg.src = url;
-            subImg.alt = `${cat.name} wallpaper sample`;
-            subImg.loading = "lazy"; // Critical for performance
-            subImg.style.width = "100%";
-            subImg.style.height = "100%";
-            subImg.style.objectFit = "cover";
-            subImg.style.display = "block";
-
-            // Spanning logic for fewer than 4 images
-            if (images.length === 1) {
-              subImg.style.gridRow = "1 / -1";
-              subImg.style.gridColumn = "1 / -1";
-            }
-            if (images.length === 2) {
-              subImg.style.gridRow = "1 / -1"; // Full height columns
-            }
-            if (images.length === 3) {
-              // First image takes left half (full height)
-              if (i === 0) subImg.style.gridRow = "1 / -1";
-            }
-
-            imgDiv.appendChild(subImg);
-          });
-
-          const contentDiv = document.createElement("div");
-          contentDiv.style.padding = "1.5rem";
-          contentDiv.style.display = "flex";
-          contentDiv.style.justifyContent = "center";
-
-          const btn = document.createElement("a");
-          btn.href = `?id=${cat.id}`;
-          btn.className = "btn-glitch";
-          btn.style.textDecoration = "none";
-          btn.style.width = "100%";
-          btn.style.textAlign = "center";
-          btn.setAttribute("data-text", cat.name.toUpperCase());
-
-          const clickHandler = (e) => {
-            e.preventDefault();
-            loadCategory(cat.id);
-          };
-
-          btn.onclick = clickHandler;
-          card.onclick = (e) => {
-            if (!e.target.closest(".btn-glitch")) clickHandler(e);
-          };
-
-          btn.innerHTML = `<span>${cat.name.toUpperCase()}</span>`;
-
-          contentDiv.appendChild(btn);
-          card.appendChild(imgDiv);
-          card.appendChild(contentDiv);
-          grid.appendChild(card);
+          imgDiv.appendChild(subImg);
         });
 
-        // Cards show immediately - no animation for instant feel
-      }
+        const contentDiv = document.createElement("div");
+        contentDiv.style.padding = "1.5rem";
+        contentDiv.style.display = "flex";
+        contentDiv.style.justifyContent = "center";
 
-      function updateHeroUI(title, subtitle) {
-        const titleEl = document.getElementById("collectionTitle");
-        const countEl = document.getElementById("collectionCount");
-        // Instant update - no animation delay
-        titleEl.textContent = title;
-        countEl.textContent = subtitle;
-      }
+        const btn = document.createElement("a");
+        btn.href = `?id=${cat.id}`;
+        btn.className = "btn-glitch";
+        btn.style.textDecoration = "none";
+        btn.style.width = "100%";
+        btn.style.textAlign = "center";
+        btn.setAttribute("data-text", cat.name.toUpperCase());
 
-      function renderPageGrid(category, items) {
-        const grid = document.getElementById("collectionGrid");
-        // Grid already cleared in loadCategory
-        const categoryNames = {
-          anime: "Anime",
-          marvel: "Marvel",
-          dc: "DC Universe",
-          movies: "Movies & TV Shows",
-          cars: "Car Culture",
-          football: "Football",
-          transformers: "Transformers",
-          wanderlust: "Wanderlust",
-          random: "Random",
+        const clickHandler = (e) => {
+          e.preventDefault();
+          loadCategory(cat.id);
         };
-        const categoryName = categoryNames[category] || category;
 
-        items.forEach((item) => {
-          // Reuse the card logic from script.js, but cleaner
-          // Copying the gridItem creation logic from script.js lines 453-479
-          // (Simplified for this script)
+        btn.onclick = clickHandler;
+        card.onclick = (e) => {
+          if (!e.target.closest(".btn-glitch")) clickHandler(e);
+        };
 
-          const wallpaperId = item.file
-            .replace(/\.(jpg|jpeg|png|webp)$/i, "")
-            .replace(/[_\s]+/g, "-")
-            .toLowerCase();
-          const gridItem = document.createElement("div");
-          gridItem.className = "grid-item";
-          gridItem.dataset.wallpaperId = wallpaperId;
+        btn.innerHTML = `<span>${cat.name.toUpperCase()}</span>`;
 
-          const altText = `${item.title} - ${categoryName} HD Wallpaper | Free Download`;
+        contentDiv.appendChild(btn);
+        card.appendChild(imgDiv);
+        card.appendChild(contentDiv);
+        grid.appendChild(card);
+      });
 
-          gridItem.onclick = () => {
-            window.location.href = `wallpaper.html?id=${wallpaperId}`;
-          };
+      // Cards show immediately - no animation for instant feel
+    }
 
-          gridItem.innerHTML = `
-            <img src="${
-              item.optimized
-            }?v=${Date.now()}" alt="${altText}" loading="lazy" />
+    function updateHeroUI(title, subtitle) {
+      const titleEl = document.getElementById("collectionTitle");
+      const countEl = document.getElementById("collectionCount");
+      // Instant update - no animation delay
+      titleEl.textContent = title;
+      countEl.textContent = subtitle;
+    }
+
+    function renderPageGrid(category, items) {
+      const grid = document.getElementById("collectionGrid");
+      // Grid already cleared in loadCategory
+      const categoryNames = {
+        anime: "Anime",
+        marvel: "Marvel",
+        dc: "DC Universe",
+        movies: "Movies & TV Shows",
+        cars: "Car Culture",
+        football: "Football",
+        transformers: "Transformers",
+        wanderlust: "Wanderlust",
+        random: "Random",
+      };
+      const categoryName = categoryNames[category] || category;
+
+      items.forEach((item) => {
+        // Reuse the card logic from script.js, but cleaner
+        // Copying the gridItem creation logic from script.js lines 453-479
+        // (Simplified for this script)
+
+        const wallpaperId = item.file
+          .replace(/\.(jpg|jpeg|png|webp)$/i, "")
+          .replace(/[_\s]+/g, "-")
+          .toLowerCase();
+        const gridItem = document.createElement("div");
+        gridItem.className = "grid-item";
+        gridItem.dataset.wallpaperId = wallpaperId;
+
+        const altText = `${item.title} - ${categoryName} HD Wallpaper | Free Download`;
+
+        gridItem.onclick = () => {
+          window.location.href = `wallpaper?id=${wallpaperId}`;
+        };
+
+        gridItem.innerHTML = `
+            <img src="${item.optimized
+          }?v=${Date.now()}" alt="${altText}" loading="lazy" />
             <div class="download-count-badge" data-id="${wallpaperId}">⬇ 0</div>
             <div class="item-overlay">
-              <a href="wallpaper.html?id=${wallpaperId}" class="btn-view-page" aria-label="View page" onclick="event.stopPropagation()">
+              <a href="wallpaper?id=${wallpaperId}" class="btn-view-page" aria-label="View page" onclick="event.stopPropagation()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
-              <button class="btn-quick-download" onclick="event.stopPropagation(); downloadImage('${
-                item.original
-              }')">
+              <button class="btn-quick-download" onclick="event.stopPropagation(); downloadImage('${item.original
+          }')">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </button>
             </div>
            `;
-          grid.appendChild(gridItem);
-        });
+        grid.appendChild(gridItem);
+      });
 
-        // Show all items immediately - no staggered animation for better performance
-        // Load download stats for badges
-        loadWallpaperStats(items);
+      // Show all items immediately - no staggered animation for better performance
+      // Load download stats for badges
+      loadWallpaperStats(items);
+    }
+
+    // Download image function
+    async function downloadImage(imageUrl) {
+      try {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = imageUrl.split("/").pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error("Download failed:", error);
       }
+    }
 
-      // Download image function
-      async function downloadImage(imageUrl) {
-        try {
-          const response = await fetch(imageUrl);
-          const blob = await response.blob();
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = url;
-          link.download = imageUrl.split("/").pop();
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(url);
-        } catch (error) {
-          console.error("Download failed:", error);
+    // Load download stats for wallpapers
+    async function loadWallpaperStats(items) {
+      if (!window.supabaseClient) return;
+      try {
+        const ids = items.map((item) =>
+          item.file
+            .replace(/\.(jpg|jpeg|png|webp)$/i, "")
+            .replace(/[_\s]+/g, "-")
+            .toLowerCase()
+        );
+        const { data } = await window.supabaseClient
+          .from("wallpaper_stats")
+          .select("id, downloads")
+          .in("id", ids);
+        if (data) {
+          data.forEach((stat) => {
+            const badge = document.querySelector(
+              `.download-count-badge[data-id="${stat.id}"]`
+            );
+            if (badge && stat.downloads > 0) {
+              badge.textContent = `⬇ ${stat.downloads}`;
+              badge.classList.add("has-downloads");
+            }
+          });
         }
+      } catch (error) {
+        console.log("Stats loading skipped");
       }
+    }
+  </script>
+</body>
 
-      // Load download stats for wallpapers
-      async function loadWallpaperStats(items) {
-        if (!window.supabaseClient) return;
-        try {
-          const ids = items.map((item) =>
-            item.file
-              .replace(/\.(jpg|jpeg|png|webp)$/i, "")
-              .replace(/[_\s]+/g, "-")
-              .toLowerCase()
-          );
-          const { data } = await window.supabaseClient
-            .from("wallpaper_stats")
-            .select("id, downloads")
-            .in("id", ids);
-          if (data) {
-            data.forEach((stat) => {
-              const badge = document.querySelector(
-                `.download-count-badge[data-id="${stat.id}"]`
-              );
-              if (badge && stat.downloads > 0) {
-                badge.textContent = `⬇ ${stat.downloads}`;
-                badge.classList.add("has-downloads");
-              }
-            });
-          }
-        } catch (error) {
-          console.log("Stats loading skipped");
-        }
-      }
-    </script>
-  </body>
 </html>

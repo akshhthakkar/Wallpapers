@@ -250,7 +250,7 @@ function generateSitemap(wallpapers) {
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>${SITE_URL}/collection.html</loc>
+    <loc>${SITE_URL}/collection</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
