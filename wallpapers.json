@@ -1,6 +1,13 @@
 {
   "anime": [
     {
+      "file": "anime-blindfold-smirk.jpg",
+      "title": "Anime Blindfold Smirk",
+      "thumbnail": "thumbnails/anime/anime-blindfold-smirk.webp",
+      "optimized": "optimized/anime/anime-blindfold-smirk.webp",
+      "original": "wallpapers/anime/anime-blindfold-smirk.jpg"
+    },
+    {
       "file": "anime-chainsawman-denji-angry.jpg",
       "title": "Anime Chainsawman Denji Angry",
       "thumbnail": "thumbnails/anime/anime-chainsawman-denji-angry.webp",
@@ -127,11 +134,25 @@
       "original": "wallpapers/anime/anime-jjk-saturo-gojo.jpg"
     },
     {
+      "file": "anime-jjk-sukuna-dark.jpg",
+      "title": "Anime Jjk Sukuna Dark",
+      "thumbnail": "thumbnails/anime/anime-jjk-sukuna-dark.webp",
+      "optimized": "optimized/anime/anime-jjk-sukuna-dark.webp",
+      "original": "wallpapers/anime/anime-jjk-sukuna-dark.jpg"
+    },
+    {
       "file": "anime-jjk-sukuna.jpg",
       "title": "Anime Jjk Sukuna",
       "thumbnail": "thumbnails/anime/anime-jjk-sukuna.webp",
       "optimized": "optimized/anime/anime-jjk-sukuna.webp",
       "original": "wallpapers/anime/anime-jjk-sukuna.jpg"
+    },
+    {
+      "file": "anime-jjk-todo.jpg",
+      "title": "Anime Jjk Todo",
+      "thumbnail": "thumbnails/anime/anime-jjk-todo.webp",
+      "optimized": "optimized/anime/anime-jjk-todo.webp",
+      "original": "wallpapers/anime/anime-jjk-todo.jpg"
     },
     {
       "file": "anime-jjk-yuji.jpg",
@@ -856,6 +877,13 @@
       "original": "wallpapers/marvel/marvel-loki-throne.jpg"
     },
     {
+      "file": "marvel-loki-timetravel.jpg",
+      "title": "Loki Timetravel",
+      "thumbnail": "thumbnails/marvel/marvel-loki-timetravel.webp",
+      "optimized": "optimized/marvel/marvel-loki-timetravel.webp",
+      "original": "wallpapers/marvel/marvel-loki-timetravel.jpg"
+    },
+    {
       "file": "marvel-spider-gwen-stacy-wallpaper.jpg",
       "title": "Spider Gwen Stacy Wallpaper",
       "thumbnail": "thumbnails/marvel/marvel-spider-gwen-stacy-wallpaper.webp",
@@ -980,6 +1008,20 @@
       "thumbnail": "thumbnails/marvel/marvel_thor_wakanda.webp",
       "optimized": "optimized/marvel/marvel_thor_wakanda.webp",
       "original": "wallpapers/marvel/marvel_thor_wakanda.jpg"
+    },
+    {
+      "file": "miles_nyc.jpg",
+      "title": "Miles Nyc",
+      "thumbnail": "thumbnails/marvel/miles_nyc.webp",
+      "optimized": "optimized/marvel/miles_nyc.webp",
+      "original": "wallpapers/marvel/miles_nyc.jpg"
+    },
+    {
+      "file": "spiderman_collage.jpg",
+      "title": "Spiderman Collage",
+      "thumbnail": "thumbnails/marvel/spiderman_collage.webp",
+      "optimized": "optimized/marvel/spiderman_collage.webp",
+      "original": "wallpapers/marvel/spiderman_collage.jpg"
     }
   ],
   "movies": [
@@ -1017,6 +1059,13 @@
       "thumbnail": "thumbnails/movies/john-wick-excommunicado.webp",
       "optimized": "optimized/movies/john-wick-excommunicado.webp",
       "original": "wallpapers/movies/john-wick-excommunicado.jpg"
+    },
+    {
+      "file": "john-wick-red.jpg",
+      "title": "John Wick Red",
+      "thumbnail": "thumbnails/movies/john-wick-red.webp",
+      "optimized": "optimized/movies/john-wick-red.webp",
+      "original": "wallpapers/movies/john-wick-red.jpg"
     },
     {
       "file": "movie-fight-club.jpg",
